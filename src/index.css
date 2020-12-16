@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+#random{
+  /* BOX MODEL  */
+ /* width: 100%;
+ height: 450px;
+ border: 1px solid black; */
+ 
+  /* ENHANCEMENT  */
+  /* background-image: url('bgimages/0.jpg');
+ background-position: center center;
+ background-size: cover; */
+ /* background-repeat: no-repeat;   */
+}

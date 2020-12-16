@@ -1,5 +1,28 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { Route, Switch, withRouter } from "react-router-dom";
+import { connect } from 'react-redux';
+import { currentUser } from "./actions/auth";
+import {fetchTheDeadWorks} from './actions/thedead';
+import Navbar from './components/Navbar';
+import Home from "./components/Home";
+import User from "./components/User";
+import Post from "./components/Posts";
+import Login from "./components/Login";
+import Signup from './components/Signup';
+import PostForm from './components/PostForm';
 import './App.css';
+import first from './bgimages/0.jpg'
+import second from './bgimages/1.jpg'
+import third from './bgimages/2.jpg'
+import fourth from './bgimages/3.jpg'
+import fifth from './bgimages/4.jpg'
+import sixth from './bgimages/5.jpg'
+import seventh from './bgimages/6.jpg'
+import eighth from './bgimages/7.jpg'
+import nineth from './bgimages/8.jpg'
+import tenth from './bgimages/9.jpg'
+
+
 
 class App extends Component {
   componentDidMount(){
@@ -24,19 +47,20 @@ class App extends Component {
       })
     }
   }
-
-  
-  
-  
   render(){
-    console.log(this.state)
+    //randomized background image with reload. Will A
+    let array = [first, second, third, fourth, fifth, sixth, seventh, eighth, nineth, tenth]
+    let img = Math.floor( Math.random() * 10 )
+
+    // console.log(this.state)
     return (
-      <div className="App">
-        <Navbar icon="puzzle" title="Quality Content!!" description="Broken Bones Made Stronger" />
+      <div className="App" style={{backgroundImage: `url(${array[img]})`, 
+       backgroundSize: 'cover', height: '100%'}}>
+        <Navbar icon="puzzle" title="Empowered People" description="Explore Your Imagination"/>
         <Switch>
-          <Route path="/quality_content" component={Home}/>
-          <Route exact path="/notes" component={Notes} />
-          <Route path='/notes/new' component={NoteInput} />
+          <Route path="/empowered_people" component={Home}/>
+          <Route exact path="/posts" component={Post}/>
+          <Route path='/posts/new' component={PostForm}/>
           <Route path="/users" component={User} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
@@ -47,7 +71,7 @@ class App extends Component {
 }
 
 const mapDispatchToProps = {
-  fetchNotesWorks,
+  fetchTheDeadWorks,
   currentUser
 }
 
@@ -57,3 +81,9 @@ const mapStateToProps = (state) =>{
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));
 
+var totalCount = 10;
+function ChangeIt(){
+let num = Math.floor( Math.random() * totalCount );
+console.log(num)
+
+}

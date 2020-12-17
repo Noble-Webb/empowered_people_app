@@ -24,10 +24,10 @@ class Home extends React.Component {
             :
             <img className="whole" src='https://thumbs.dreamstime.com/b/set-extinct-birds-animals-names-list-mammals-sea-creatures-ceased-to-exist-isolated-vector-images-species-can-131490030.jpg'></img> 
         }
-        <button onClick={this.handleClick}> Ready for some Quality-Content?  </button>
-        <h1>Welcome to Quality Content!</h1>
+        <button onClick={this.handleClick}> Ready to Explore?  </button>
+        <h1>Welcome to Empowered People!</h1>
         
-        <h3>      Do you have a Dream?          </h3>
+        <h3>I have a Dream?</h3>
 
         <h4>Our users ALL dream big and our mission it to help make those dreams come true. How do we do that? Well, here at Quality Content, we allow our users to post project ideas of any nature. The user community, along with our staff of HIGHLY TRAINED project managers, weigh in on the good and bad aspects of the idea. This process enables our users to create Quality Content.</h4> 
         <br/>

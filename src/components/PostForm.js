@@ -58,7 +58,6 @@ class PostForm extends React.Component {
       <h1>Learn something new today? </h1>
     <form widths='equal'>
       <Form.Input
-        fluid
         name='title'
         onChange={this.handleChange}
         value={title}
@@ -67,15 +66,15 @@ class PostForm extends React.Component {
         placeholder='Post Title'
       />
     </form>
+    <br/>
     <form widths='equal'>
       <Form.Input
-        fluid
         name='content'
         onChange={this.handleChange}
         value={content}
         id='form-subcomponent-shorthand-input-first-name'
         label='Content'
-        placeholder='content'
+        placeholder='Content'
       />
     </form>
     <button type='submit'>Submit</button>

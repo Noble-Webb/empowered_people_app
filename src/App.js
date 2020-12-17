@@ -10,6 +10,7 @@ import Post from "./components/Posts";
 import Login from "./components/Login";
 import Signup from './components/Signup';
 import PostForm from './components/PostForm';
+import ExtinctAnimals from './components/ExtinctAnimals'
 import './App.css';
 import first from './bgimages/0.jpg'
 import second from './bgimages/1.jpg'
@@ -27,7 +28,11 @@ import tenth from './bgimages/9.jpg'
 class App extends Component {
   componentDidMount(){
     const token = localStorage.getItem('my_app_token')
-
+    fetch("https://www.parsehub.com/api/v2/projects/tR30YmjyZqGX/last_ready_run/data?api_key={tu-NTqZ_MtGT}")
+      .then(resp => resp.json())
+      .then(data =>{
+        console.log(data)
+      })
     if(!token) {
       this.props.history.push('/signup')
     } else {
@@ -46,6 +51,7 @@ class App extends Component {
         this.props.currentUser(users)
       })
     }
+    
   }
   render(){
     //randomized background image with reload. Will A
@@ -60,6 +66,9 @@ class App extends Component {
         <Switch>
           <Route path="/empowered_people" component={Home}/>
           <Route exact path="/posts" component={Post}/>
+          {/* post route  */}
+          {/* <Route exact path="/posts/:postId" component={PostShow}/> */}
+          <Route path="/extinct_animals" component={ExtinctAnimals}/>
           <Route path='/posts/new' component={PostForm}/>
           <Route path="/users" component={User} />
           <Route path="/login" component={Login} />
@@ -80,10 +89,3 @@ const mapStateToProps = (state) =>{
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));
-
-var totalCount = 10;
-function ChangeIt(){
-let num = Math.floor( Math.random() * totalCount );
-console.log(num)
-
-}

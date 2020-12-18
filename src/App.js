@@ -10,7 +10,7 @@ import Post from "./components/Posts";
 import Login from "./components/Login";
 import Signup from './components/Signup';
 import PostForm from './components/PostForm';
-import ExtinctAnimals from './components/ExtinctAnimals'
+import ExtinctAnimals from './components/ExtinctAnimals';
 import './App.css';
 import first from './bgimages/0.jpg'
 import second from './bgimages/1.jpg'
@@ -22,17 +22,20 @@ import seventh from './bgimages/6.jpg'
 import eighth from './bgimages/7.jpg'
 import nineth from './bgimages/8.jpg'
 import tenth from './bgimages/9.jpg'
+import PostList from './components/PostList';
 
 
 
 class App extends Component {
   componentDidMount(){
     const token = localStorage.getItem('my_app_token')
-    fetch("https://www.parsehub.com/api/v2/projects/tR30YmjyZqGX/last_ready_run/data?api_key={tu-NTqZ_MtGT}")
+    
+    fetch('http://localhost:3001/mammals')
       .then(resp => resp.json())
-      .then(data =>{
-        console.log(data)
-      })
+      .then(mammals =>{
+        console.log(mammals) 
+        this.props.fetchTheDeadWorks(mammals)})
+
     if(!token) {
       this.props.history.push('/signup')
     } else {
@@ -68,10 +71,11 @@ class App extends Component {
           <Route exact path="/posts" component={Post}/>
           {/* post route  */}
           {/* <Route exact path="/posts/:postId" component={PostShow}/> */}
-          <Route path="/extinct_animals" component={ExtinctAnimals}/>
-          <Route path='/posts/new' component={PostForm}/>
+          <Route exact path='/posts/new' component={PostForm}/>
           <Route path="/users" component={User} />
+          <Route exact path="/users/:username/" component={PostList} />
           <Route path="/login" component={Login} />
+          <Route path="/learn" component={ExtinctAnimals} />
           <Route path="/signup" component={Signup} />
         </Switch>
       </div>

@@ -36,6 +36,10 @@ class Navbar extends React.Component {
           <NavLink className="item" to='/posts'>
             Posts Page
           </NavLink>
+          <NavLink className="item" to='/learn' >Learn from The Past</NavLink>
+          <NavLink className="item" to="/users/:username/" >
+            Profile Page
+          </NavLink>
           <NavLink className="item" to='/empowered_people'>
               Explore Extinct Worlds
           </NavLink>

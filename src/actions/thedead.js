@@ -1,6 +1,6 @@
-export const fetchTheDeadWorks = (extinctAnimals) => {
+export const fetchTheDeadWorks = (mammals) => {
   return {
     type: 'FETCH_THEDEAD_WORKS',
-    extinctAnimals
+    mammals
   };
 };

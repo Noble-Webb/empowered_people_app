@@ -54,6 +54,9 @@ class PostForm extends React.Component {
    const { title, content} = this.state
   // console.log(this.props.users.id)
    return (
+     <div>
+     {localStorage.getItem("my_app_token") 
+     ?
     <form className={'new-post-form'} inverted onSubmit={this.handleSubmit}>
       <h1>Learn something new today? </h1>
     <form widths='equal'>
@@ -79,12 +82,18 @@ class PostForm extends React.Component {
     </form>
     <button type='submit'>Submit</button>
   </form>
-   )
+  :
+  <h1>Please Login </h1>
+     }
+     </div>
+  )
  }
 }
 const mapStateToProps = (state) => {
-
-  return {users: state.users}
+  return ({
+    users: state.users,
+    auth: state.auth
+  })
 }
 
 export default connect(mapStateToProps, {addPost, currentUser})(PostForm);

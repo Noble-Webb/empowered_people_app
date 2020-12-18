@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux";
-import UserCard from './UserCard'
+import Profile from './Profile'
 import { removeUser, editUser } from "../actions/users";
 
 class User extends React.Component {
@@ -8,14 +8,14 @@ class User extends React.Component {
     super()
     this.state = {
       users: []
-    }
-  }
+    } 
+  } 
 
   componentDidMount(){
     fetch('http://localhost:3001/users')
     .then(resp => resp.json())
     .then(users => {
-      console.log(users)
+      // console.log(users)
       this.setState({
         users: users
       })
@@ -23,7 +23,7 @@ class User extends React.Component {
   }
  
   render(){
-    const {user, removeUser, editUser} = this.props
+    const { removeUser, editUser} = this.props
     
     return (
       <div>
@@ -35,7 +35,7 @@ class User extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col-md-4">
-               {user.map(user => <UserCard key={user.id} editUser={editUser} removeUser={removeUser} user={user}/>)}
+               <Profile editUser={editUser} removeUser={removeUser} />
             </div>
           </div>
         </div>

@@ -1,21 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import  { removePost, upvotePost} from '../actions/posts'
+import  { upvotePost} from '../actions/posts'
 
-class Post extends React.Component{
+class PostCard extends React.Component{
  
-  handleDelete = (e) => {
-    const target = this.props.post.id 
-
-    fetch(`http://localhost:3001/posts/${target}`, {method: 'DELETE'})
-    .then(resp => resp.json())
-    .then(data => {
-      this.props.removePost(data.id)
-    })
-  }
-  
   handleUpVotes = (e) => { 
-    const target = this.props.post.id  
+    const target = this.props.post.id    
     
     const reqObj = {
       method: 'PATCH',
@@ -34,7 +24,7 @@ class Post extends React.Component{
   
   render(){
 
-    const {title, content, id, upvotes, author} = this.props.post
+    const {title, content, id, upvote, author} = this.props.post 
     return(
         <div >
           <div className="card">
@@ -49,23 +39,15 @@ class Post extends React.Component{
                 type="button" 
                 id={id}
                 name='up'
-                value={upvotes}
+                value={upvote}
                 onClick={this.handleUpVotes} 
                 className="btn btn-primary"
               >
                 Upvote
               </button>
-              <button 
-                id={id}
-                type="button" 
-                onClick={this.handleDelete} 
-                className="btn btn-danger"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
               </div>
             </div>
-            <div>Votes: {upvotes}</div>
+            <div>Votes: {upvote}</div>
             <p>{author}</p>
           </div>
         </div>
@@ -74,4 +56,4 @@ class Post extends React.Component{
 }
 
 
-export default connect(null, { removePost, upvotePost })(Post);
+export default connect(null, { upvotePost })(PostCard);

@@ -28,6 +28,35 @@
   color: #61dafb;
 }
 
+.pigTile {
+  display: inline;
+  max-height: 250px;
+  max-width: 200px;
+  background-repeat: no-repeat;
+  background-position: center 90%;
+  float: left;
+  margin: 2%;
+  padding: 1%;
+  outline: #3B0B0B dotted thick;
+  transition: 0.75s;
+  overflow: hidden;
+  background-color: #282c34;
+}
+
+.card {
+  display: inline;
+  min-height: 250px;
+  background-repeat: no-repeat;
+  background-position: center 90%;
+  float: left;
+  margin: 2%;
+  padding: 1%;
+  outline: #3B0B0B dotted thick;
+  transition: 0.75s;
+  opacity: 1;
+  background-color: #61dafb;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

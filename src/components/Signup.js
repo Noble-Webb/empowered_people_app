@@ -37,7 +37,7 @@ class Signup extends Component {
       body:  JSON.stringify(this.state)
     }
 
-    fetch('http://localhost:3001/users', reqObj)
+    fetch('http://localhost:3002/users', reqObj)
     .then(resp => resp.json())
     .then(data => {
       console.log(data)

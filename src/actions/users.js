@@ -18,3 +18,10 @@ export const editUser = userId => {
     userId
   }
 }
+
+export const fetchUsersWorks = users => {
+ return{ 
+  type: 'FETCH_USERS_WORKS',
+  users
+}
+}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, withRouter } from "react-router-dom";
+import { Route, Switch, Redirect} from "react-router-dom";
 import { connect } from 'react-redux';
 import { currentUser } from "./actions/auth";
 import {fetchTheDeadWorks} from './actions/thedead';
@@ -10,6 +10,7 @@ import Post from "./components/Posts";
 import Login from "./components/Login";
 import Signup from './components/Signup';
 import PostForm from './components/PostForm';
+// import Profile from "./components/Profile"
 import ExtinctAnimals from './components/ExtinctAnimals';
 import './App.css';
 import first from './bgimages/0.jpg'
@@ -22,18 +23,17 @@ import seventh from './bgimages/6.jpg'
 import eighth from './bgimages/7.jpg'
 import nineth from './bgimages/8.jpg'
 import tenth from './bgimages/9.jpg'
-import PostList from './components/PostList';
 
-
+// window.location.reload();
 
 class App extends Component {
   componentDidMount(){
     const token = localStorage.getItem('my_app_token')
     
-    fetch('http://localhost:3001/mammals')
+    fetch('http://localhost:3002/mammals')
       .then(resp => resp.json())
       .then(mammals =>{
-        console.log(mammals) 
+        // console.log(mammals) 
         this.props.fetchTheDeadWorks(mammals)})
 
     if(!token) {
@@ -47,7 +47,7 @@ class App extends Component {
         }
       }
 
-      fetch('http://localhost:3001/current_user', reqObj)
+      fetch('http://localhost:3002/current_user', reqObj)
       .then(resp => resp.json())
       .then(users =>{
         // console.log(users)
@@ -61,19 +61,22 @@ class App extends Component {
     let array = [first, second, third, fourth, fifth, sixth, seventh, eighth, nineth, tenth]
     let img = Math.floor( Math.random() * 10 )
 
-    // console.log(this.state)
+    // console.log(this.props.users)
     return (
       <div className="App" style={{backgroundImage: `url(${array[img]})`, 
-       backgroundSize: 'cover', height: '100%'}}>
+        height: '100%'}}>
         <Navbar icon="puzzle" title="Empowered People" description="Explore Your Imagination"/>
         <Switch>
-          <Route path="/empowered_people" component={Home}/>
-          <Route exact path="/posts" component={Post}/>
+        <Route exact path="/">
+  { localStorage.getItem('my_app_token') ? null : <Redirect to="/login" />}
+</Route>
+          <Route exact path="/empowered_people" component={Home}/>
+          <Route  exact path="/posts" component={Post}/>
           {/* post route  */}
           {/* <Route exact path="/posts/:postId" component={PostShow}/> */}
           <Route exact path='/posts/new' component={PostForm}/>
           <Route path="/users" component={User} />
-          <Route exact path="/users/:username/" component={PostList} />
+          {/* <Route exact path="/users/profile/" component={Profile} /> */}
           <Route path="/login" component={Login} />
           <Route path="/learn" component={ExtinctAnimals} />
           <Route path="/signup" component={Signup} />
@@ -89,7 +92,9 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = (state) =>{
-  // user: state.current_user.user.id  
-}
+  return{
+  users: state.users,
+  auth: state.auth
+}}
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));
+export default connect(mapStateToProps, mapDispatchToProps)(App);

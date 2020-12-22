@@ -3,6 +3,9 @@ export default function posts(state = [], action) {
     switch (action.type){
       case 'FETCH_POSTS_WORKS':
         return action.posts 
+      case 'FETCH_USER_POSTS':
+        update = state.filter(post => post.userId === action.userId)
+        return update 
       case "ADD_POST":
         return [...state, action.post];
       case "REMOVE_POST":

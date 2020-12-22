@@ -38,7 +38,7 @@ class PostForm extends React.Component {
       body:  JSON.stringify(newPost)
     }
 
-    fetch('http://localhost:3001/posts', reqObj)
+    fetch('http://localhost:3002/posts', reqObj)
     .then(resp => resp.json())
     .then(post => {
       this.setState({
@@ -83,7 +83,17 @@ class PostForm extends React.Component {
     <button type='submit'>Submit</button>
   </form>
   :
-  <h1>Please Login </h1>
+  <div id='Hey' >
+  <h1>Welcome to Library!</h1>
+        
+
+           
+            <h3>Earth is punctuated by five major extinction events. The end-Permian extinction event is thought of as the most dramatic example, taking nearly 95% of all life at the time. [Vijda, Mcloughlin 2005] Only 50 Mya after the end-Permian extinction began the Triassic - Jurassic extinction. This extinction saw the end of 70% of vertebrates and nearly 100% of shallow marine life. Strangely enough, a large number of terrestrial plants were vastly unaffected. During the end-Triassic extinction, close to half of all the life that existed at the time went extinct. These types of events are important to study because they give insight into CO2 change, oxygen levels, climate, and fauna/flora growth. These extinctions have fundamentally changed the planet inside and out. [Kunin, W.E.; Gaston, Kevin, eds. (31 December 1996)]</h3> <br/>
+
+            <h3>Empowered People host a database of extinct animals dating back to the Ordovician-Silurian era, 440 million years ago. Data is initially retrieved from Wikipedia using ParceHub, then painstakingly analyzed for quality assurance. Therefore, the information you're looking for may not be available today, but very well maybe tomorrow! Visit frequently to stay up to date! Notice Empowered People does not own any of the information seen on this and like pages. All imformation was expressly given and royality free. Links are available.</h3> <br/>
+
+  <h1>Please Login to start exploring</h1>
+  </div>
      }
      </div>
   )

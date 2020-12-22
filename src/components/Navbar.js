@@ -7,8 +7,10 @@ import { NavLink} from 'react-router-dom'
 class Navbar extends React.Component {
 
   handleLogout = () => {
-    localStorage.clear()
+    // this.props.history.push('/login')
     this.props.logoutUser()
+    localStorage.removeItem('my_app_token')
+    window.location.reload();
   }
 
   render() {
@@ -19,7 +21,7 @@ class Navbar extends React.Component {
           <div className="content">{this.props.title}</div>
           <div className="sub header">{this.props.description}</div>
         </NavLink>
-        <div className="right menu">
+        <div className="left menu">
         {
         localStorage.getItem("my_app_token") ?
         <NavLink to='/login' className="ui button" onClick={this.handleLogout}>
@@ -37,7 +39,7 @@ class Navbar extends React.Component {
             Posts Page
           </NavLink>
           <NavLink className="item" to='/learn' >Learn from The Past</NavLink>
-          <NavLink className="item" to="/users/:username/" >
+          <NavLink className="item" to="/users/profile" >
             Profile Page
           </NavLink>
           <NavLink className="item" to='/empowered_people'>

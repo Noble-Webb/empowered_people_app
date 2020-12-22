@@ -7,7 +7,7 @@ import {fetchTheDeadWorks} from '../actions/thedead';
 
 class ExtinctAnimals extends Component {
   componentDidMount(){
-      fetch('http://localhost:3001/mammals')
+      fetch('http://localhost:3002/mammals')
       .then(resp => resp.json())
       .then(mammals =>{ 
         this.props.fetchTheDeadWorks(mammals)})

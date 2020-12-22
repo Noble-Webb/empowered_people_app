@@ -27,7 +27,7 @@ class Login extends React.Component {
       body: JSON.stringify(this.state)
     }
 
-    fetch('http://localhost:3001/auth', reqObj)
+    fetch('http://localhost:3002/auth', reqObj)
     .then(resp => resp.json())
     .then(data => {
       if (data.error) {
@@ -36,7 +36,8 @@ class Login extends React.Component {
         })
       } else {
         this.props.currentUser(data)
-        this.props.history.push('/posts')
+        this.props.history.push('/users/profile')
+        window.location.reload();
         localStorage.setItem('my_app_token', data.token)
       }
     })

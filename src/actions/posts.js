@@ -4,7 +4,15 @@ export const fetchPostsWorks = (posts) => {
     posts 
   };
 };
-  
+
+export const fetchUserPosts = (posts, userId) => {
+  return{
+    type: 'FETCH_USER-POSTS',
+    posts,
+    userId 
+  }
+}
+
 export const addPost = post => {
   return {
     type: 'ADD_POST',

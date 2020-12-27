@@ -24,9 +24,9 @@ class PostList extends Component {
           <h2>Posts</h2>
         </div>
         <hr />
-        <div className="container">
-          <div className="row">
-            <div className="col-md-4">
+        <div >
+          <div>
+            <div>
                { localStorage.getItem("my_app_token") 
                   ?
                   posts.map(post => <PostCard key={post.id} upvotePost={upvotePost} removePost={removePost} post={post} />)
@@ -50,3 +50,4 @@ const mapStateToProps = state => {
 } 
 
 export default connect(mapStateToProps, { removePost, upvotePost, fetchPostsWorks})(PostList);
+// style={{display: 'inline', border: '2px solid red' }}

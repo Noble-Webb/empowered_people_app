@@ -125,7 +125,7 @@ class User extends React.Component {
           {this.state.error ? <h4 style={{color: 'red'}}>{this.state.error}</h4> : null}
           {localStorage.getItem("my_app_token") ?
         <div className="row justify-content-center">
-        
+           <div> <h1 id='Hey'>Profile Page</h1> </div>
         {this.state.show ? 
               <form onSubmit={this.handleSubmit}>
                 <input
@@ -196,4 +196,4 @@ const mapStateToProps = state => {
   })
 }
 
-export default connect(mapStateToProps, { removePost, editPost,removeUser, editUser, fetchPostsWorks, fetchUsersWorks, logoutUser })(User);
+export default connect(mapStateToProps, { removePost, editPost, removeUser, editUser, fetchPostsWorks, fetchUsersWorks, logoutUser })(User);

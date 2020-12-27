@@ -36,9 +36,9 @@ class Login extends React.Component {
         })
       } else {
         this.props.currentUser(data)
+        localStorage.setItem('my_app_token', data.token)
         this.props.history.push('/users/profile')
         window.location.reload();
-        localStorage.setItem('my_app_token', data.token)
       }
     })
   }

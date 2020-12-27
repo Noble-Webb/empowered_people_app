@@ -1,33 +1,32 @@
 import React from 'react'
 
-
 class Learn extends React.Component {
     constructor(){
         super()
         this.state = {
-          showDetails: false,
-          display: false 
+          search: '' 
+        //   showDetails: false,
+        //   display: false,
         }
     }
-    
-    handleClick = () => {
-        let newBoolean = !this.state.display
-        this.setState({display: newBoolean})
-    }
+    // handleClick = () => {
+    //     let newBoolean = !this.state.display
+    //     this.setState({display: newBoolean})
+    // }
 
     urlTab = (url) => {
         console.log(url)
         window.open(url)
     }
 
-    handleToggle = () => {
-    this.setState({
+    // handleToggle = () => {
+    // this.setState({
         
-        showDetails: !this.state.showDetails
+    //     showDetails: !this.state.showDetails
         
-    })
-    console.log(this.state.showDetails)
-    }
+    // })
+    // console.log(this.state.showDetails)
+    // }
 
     render(){
         const { common_name, url, family, extinction_date, range,kingdom, phylum, scientific_class, order, genus, species, description } = this.props.mammal

@@ -42,7 +42,7 @@ class Navbar extends React.Component {
           <NavLink className="item" to="/users/profile" >
             Profile Page
           </NavLink>
-          <NavLink className="item" to='/empowered_people'>
+          <NavLink className="item" to='/games'>
               Explore Extinct Worlds
           </NavLink>
         </div>

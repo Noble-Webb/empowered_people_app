@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect} from "react-router-dom";
+import { Route, Switch, withRouter} from "react-router-dom";
 import { connect } from 'react-redux';
 import { currentUser } from "./actions/auth";
 import {fetchTheDeadWorks} from './actions/thedead';
@@ -10,7 +10,8 @@ import Post from "./components/Posts";
 import Login from "./components/Login";
 import Signup from './components/Signup';
 import PostForm from './components/PostForm';
-// import Profile from "./components/Profile"
+import Game from './container/Game';
+import PropTypes from 'prop-types';
 import ExtinctAnimals from './components/ExtinctAnimals';
 import './App.css';
 import first from './bgimages/0.jpg'
@@ -61,22 +62,16 @@ class App extends Component {
     let array = [first, second, third, fourth, fifth, sixth, seventh, eighth, nineth, tenth]
     let img = Math.floor( Math.random() * 10 )
 
-    // console.log(this.props.users)
     return (
       <div className="App" style={{backgroundImage: `url(${array[img]})`, 
         height: '100%'}}>
         <Navbar icon="puzzle" title="Empowered People" description="Explore Your Imagination"/>
         <Switch>
-        <Route exact path="/">
-  { localStorage.getItem('my_app_token') ? null : <Redirect to="/login" />}
-</Route>
+          <Route exact path="/games" component={Game}/>
           <Route exact path="/empowered_people" component={Home}/>
           <Route  exact path="/posts" component={Post}/>
-          {/* post route  */}
-          {/* <Route exact path="/posts/:postId" component={PostShow}/> */}
           <Route exact path='/posts/new' component={PostForm}/>
           <Route path="/users" component={User} />
-          {/* <Route exact path="/users/profile/" component={Profile} /> */}
           <Route path="/login" component={Login} />
           <Route path="/learn" component={ExtinctAnimals} />
           <Route path="/signup" component={Signup} />
@@ -97,4 +92,8 @@ const mapStateToProps = (state) =>{
   auth: state.auth
 }}
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+App.propTypes = {
+  message: PropTypes.string.isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));

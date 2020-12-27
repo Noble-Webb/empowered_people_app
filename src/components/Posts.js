@@ -7,8 +7,13 @@ class Posts extends Component {
     
     render(){
     return ( 
+        <div>
+        {localStorage.getItem("my_app_token") ?
        <div>
            <PostList />
+       </div>
+       :
+       this.props.history.push('/login')}
        </div>
     );
     }

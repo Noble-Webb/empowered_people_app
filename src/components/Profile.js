@@ -124,7 +124,7 @@ class Profile extends React.Component{
 <div class="front">
 <h1>{title}</h1>
 <p><span>family</span></p>
-<p class="price">:p {upvote}</p>
+<p class="price">＼(^-^)／ {upvote}</p>
 </div>
 <div class="right">
 <h2>{title}</h2>
@@ -174,29 +174,3 @@ const mapDispatchToProps = {
     fetchPostsWorks
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Profile)
-
-{/* <div className="card">
-<p>{title}</p>
-<p>Content:{content}</p>
-<p>Votes: {upvote}</p>
-<div className="btn-group btn-group-sm" role="group" aria-label="Basic example">
-<button 
-  type="button" 
-  id={id}
-  name='edit'
-  value={title, content}
-  onClick={this.handlePostEdit} 
-  className="btn btn-primary">
-  Edit Post
-</button>
-
-<button 
-  id={id}
-  type="button" 
-  onClick={this.handlePostDelete} 
-  className="btn btn-danger">
-  <span aria-hidden="true">&times;</span>
-  Delete Post
-</button>
-</div>
-</div> */}

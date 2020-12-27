@@ -28,19 +28,19 @@ class PostCard extends React.Component{
 
     const {title, content, id, upvote, author, kingdom} = this.props.post 
     return(
-      <div>
+      <div >
     
         {!localStorage.getItem("my_app_token") ?  this.props.history.push('/login')   :
               
-      <div class="flex flex-wrap -m-3">
-      <div class="wrapper">
-  <div class="card">
-    <div class="front">
+      <div className="wrapper">
+      <div >
+  <div className="card">
+    <div className="front">
       <h1>{title}</h1>
       <p>{author}<span>family</span></p>
-      <p class="price">:p {upvote}</p>
+      <p className="price">＼(^-^)／ {upvote}</p>
     </div>
-    <div class="right">
+    <div className="right">
       <h2>{title}</h2>
       <ul>
         <li>Quality Content: {content}</li>
@@ -52,8 +52,8 @@ class PostCard extends React.Component{
                 onClick={this.handleUpVotes}>Show Some Love</button>
     </div>
   </div>
-  <div class="img-wrapper">
-       <img class="play" src={smile} alt=''/>    
+  <div className="img-wrapper">
+       <img className="play" src={smile} alt=''/>    
   </div>
 </div>
 </div>

@@ -4,3 +4,10 @@ export const fetchTheDeadWorks = (mammals) => {
     mammals
   };
 };
+export const strollCementary = (query, mammals) => {
+  return{
+  type: 'STROLL_CEMENTARY',
+  mammals,
+  query
+  }
+}

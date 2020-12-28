@@ -25,3 +25,10 @@ export const fetchUsersWorks = users => {
   users
 }
 }
+
+export const mapSuggestion = userId => {
+  return{
+    type: 'MAP_SUGGESTION',
+    userId
+  }
+}

@@ -4,7 +4,11 @@ export default function extinctAnimals(state = [], action){
         case 'FETCH_THEDEAD_WORKS':
             return action.mammals
         case 'STROLL_CEMENTARY':
-            list = action.mammals.common_name.toLowerCase().includes(action.query.toLowerCase()) || action.mammals.family.toLowerCase().includes(action.query.toLowerCase())
+            list = state.filter((thedead) =>{
+                // console.log(thedead)
+                return thedead.common_name.toLowerCase().includes(action.query.toLowerCase()) || thedead.scientific_class.toLowerCase().includes(action.query.toLowerCase())
+            })
+        // console.log(list)
             return list
         default:
             return state;

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 
 
-  function Canvas(props) {
+  function MapEditor(props) {
 
     const handleSubmit= (e) => {
       // e.preventDefault();
@@ -266,13 +266,13 @@ import { connect } from "react-redux";
       games: state.games
     })
   }
-export default connect(mapStateToProps, null)(Canvas);
+export default connect(mapStateToProps, null)(MapEditor);
 
 
 
 
 // import React, {useState, useEffect} from 'react'
-// const Canvas = () => {
+// const MapEditor = () => {
 //         const [mouseX, setMouseX] = useState(0)
 //         const [mouseY, setMouseY] = useState(0)
 //         function _onMouseMove(e){
@@ -507,4 +507,4 @@ export default connect(mapStateToProps, null)(Canvas);
 //     );
 // }
 
-// export default Canvas
+// export default MapEditor

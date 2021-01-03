@@ -1,5 +1,4 @@
 import React from "react";
-// import NoteList from "./NoteList";
 
 
 
@@ -12,6 +11,12 @@ class Home extends React.Component {
         let newBoolean = !this.state.display
         this.setState({display: newBoolean})
     }
+    urlTab = () => {
+        let url = "http://localhost:3000/games/play"
+    
+        // console.log(url)
+        window.open(url)
+    }
     
     render(){
     return ( 
@@ -19,12 +24,12 @@ class Home extends React.Component {
             
         { this.state.display
             ?
-            // <NoteList />
-            <p> <a href='file:///C:/Users/webb.justin15/Final-Project/Game%20Engine/index.html'>"Ready To Interact With the Undead?!?"</a> </p>
+            <button onClick={this.urlTab}> Interact With The Dead? </button>
+            
             :
             <img className="whole" src='https://thumbs.dreamstime.com/b/set-extinct-birds-animals-names-list-mammals-sea-creatures-ceased-to-exist-isolated-vector-images-species-can-131490030.jpg'></img> 
         }
-        <button onClick={this.handleClick}> Ready to Explore?  </button>
+        <button onClick={this.handleClick}> Click Me!! </button>
         <h1>Welcome to Empowered People!</h1>
         
         <h3>Power of Empowered People </h3>
@@ -32,7 +37,7 @@ class Home extends React.Component {
 
             <p>The mission of Empowered People is to provide judgement and politic free information on the environment. I aim to cultivate a scholarly interest in the biome we collectively call home. Enjoy your visit! </p>
 
-                                <br/>
+            <br/>
         <h4>The Current State of Affairs</h4>
 
         <p>Education, or the lack thereof, is considered by many the great divider of people for where there is like education and assessment of facts a common understanding is possible. The same is true of education’s role in the realm of conservation and environmental stewardship. The very definition of the term environmental education, coined by the World Conservation Union in 1970, contains a significant premise of changing behaviors based upon newfound knowledge. Hundreds of environmental education programs spawned with this idea in mind. While there exists little disagreement that environmental education cultivates environmental stewardship behaviors, another well known and lowly debated fact is that education does not equal action.</p> 

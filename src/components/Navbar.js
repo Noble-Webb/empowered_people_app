@@ -9,9 +9,15 @@ class Navbar extends React.Component {
   handleLogout = () => {
     // this.props.history.push('/login')
     this.props.logoutUser()
-    localStorage.removeItem('my_app_token')
+    localStorage.removeItem('my_app_token') 
     window.location.reload();
   }
+
+  urlTab = () => {
+    let url = "http://localhost:3000/games/play"
+    window.open(url)
+  }
+  
 
   render() {
     return (
@@ -39,11 +45,12 @@ class Navbar extends React.Component {
             Posts Page
           </NavLink>
           <NavLink className="item" to='/learn' >Learn from The Past</NavLink>
+          <NavLink onClick={this.urlTab} className="item" to='/games/play' >Interact with the Past</NavLink>
           <NavLink className="item" to="/users/profile" >
             Profile Page
           </NavLink>
           <NavLink className="item" to='/games'>
-              Explore Extinct Worlds
+              Create Your Own World
           </NavLink>
         </div>
       </div>

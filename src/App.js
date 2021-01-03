@@ -13,6 +13,7 @@ import PostForm from './components/PostForm';
 import Game from './container/Game';
 import PropTypes from 'prop-types';
 import ExtinctAnimals from './components/ExtinctAnimals';
+import Engine from "./components/Engine"
 import './App.css';
 import first from './bgimages/0.jpg'
 import second from './bgimages/1.jpg'
@@ -68,6 +69,7 @@ class App extends Component {
         <Navbar icon="puzzle" title="Empowered People" description="Explore Your Imagination"/>
         <Switch>
           <Route exact path="/games" component={Game}/>
+          <Route path="/games/play" component={Engine}/>
           <Route exact path="/empowered_people" component={Home}/>
           <Route  exact path="/posts" component={Post}/>
           <Route exact path='/posts/new' component={PostForm}/>

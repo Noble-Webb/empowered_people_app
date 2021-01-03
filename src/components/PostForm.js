@@ -58,7 +58,7 @@ class PostForm extends React.Component {
      {localStorage.getItem("my_app_token") 
      ?
      <div>
-      <form className={'new-post-form'} inverted onSubmit={this.handleSubmit}>
+      <form id='Hey' inverted onSubmit={this.handleSubmit}>
         <h1>Learn something new today? </h1>
       <form widths='equal'>
         <Form.Input

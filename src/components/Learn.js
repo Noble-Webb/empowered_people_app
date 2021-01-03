@@ -88,7 +88,7 @@ class Learn extends React.Component {
         </section>
 
         <footer>
-            <button onClick={()=>this.urlTab(url)}> Drink from the Tap? </button>
+            <button onClick={()=>this.urlTab(url)}> Go this Data's Source? </button>
         </footer>       
         </div>
         :

@@ -21,7 +21,6 @@ class TileDraw {
     this.map.forEach((row) => {
       let xx = 0;
       row.forEach((value) => {
-        console.log(value);
         let sy = Math.floor(value / 8);
         let sx = value - sy * 8;
         ctx.drawImage(this.tiles, sx * 16, sy * 16, 16, 16, xx * 16, yy * 16, 16, 16);

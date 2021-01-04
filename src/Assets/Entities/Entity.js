@@ -21,6 +21,8 @@ class Entity {
     this.spriteSheet.setAttribute("hidden", true);
     this.animatesWithMovements = true;
     this.movesWithKeysCheck = true;
+    this.name = "basic entity"
+    this.cb = {}
     document.getElementById("sheet-holder").appendChild(this.spriteSheet);
   }
   bindCamera() {
@@ -123,6 +125,12 @@ class Entity {
   setProps(props) {
     this.keys = props.keys;
     this.count = props.count;
+    this.cb= {
+      left: this.x,
+      right: this.x + 16,
+      top: this.y,
+      bottom: this.y + 16
+    }
   }
 
   loop() {
@@ -136,7 +144,6 @@ class Entity {
       this.movesWithKeys();
     }
 
-    // console.log(this.x,this.y)
 
     if (this.bindCameraToEntity) {
       this.bindCamera();

@@ -7,10 +7,12 @@ import BlueWhale from "../Assets/Entities/BlueWhale";
 import Rodent from "../Assets/Entities/Rodent";
 import TileDraw from "./TileDraw";
 import TileSet from '../container/Assets/Tilesets/TileSet.png'
+
 function Engine() {
   const [mounted, setMounted] = useState(false);
   const [timer, setTimer] = useState(null)
-
+  const [mouseDownTime, setMouseDownTime] = useState(0);
+  const [clickedThing, setClickedThing] = useState("Use the keys 'wasd' to navigate the world. and click on an animal to learn more about it.");
   let map = [
     [58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,], 
     [18,19,12,12,12,12,12,18,29,58,12,12,12,12,12,12,12,12,34,24,], 
@@ -38,6 +40,7 @@ function Engine() {
   let down = false;
   let left = false;
   let right = false;
+  let action = false;
   let entityLoop = {};
   let count = 0;
   let mainCanvas = null;
@@ -53,13 +56,15 @@ function Engine() {
 
   document.addEventListener("keydown", (e) => checkKeyDown(e));
   document.addEventListener("keyup", (e) => checkKeyUp(e));
+  document.addEventListener("mousedown", (e) => handleMouseDown(e));
+  document.addEventListener("mouseup", (e) => handleMouseUp(e));
 
   function setProps() {
     return {
       keys: {up: up,
       down: down,
       left: left,
-      right: right},
+      right: right, action: action},
       count: count,
       canvas: camera,
       ctx: cameraCtx,
@@ -81,6 +86,9 @@ function Engine() {
       case "d":
         right = true;
         break;
+      case "e":
+        action = true;
+        break;  
     }
   }
   function checkKeyUp(e) {
@@ -96,6 +104,9 @@ function Engine() {
         break;
       case "d":
         right = false;
+        break;
+      case "e":
+        action = false;
         break;
     }
   }
@@ -136,10 +147,33 @@ function Engine() {
       0,
       mainCanvas.width,
       mainCanvas.height
+    ); 
+    mainCtx.fillStyle = "blue";
+    mainCtx.fillRect(
+      mainCanvas.dataset.mousex,
+      mainCanvas.dataset.mousey,
+      3,
+      3
     );} else{ 
       clearInterval(timer)
     }
   }
+
+  function handleMouseMove(e) {
+    let offset = e.target.getBoundingClientRect();
+    let newMouseX = Math.floor(
+      ((e.clientX - offset.left) * e.target.width) / e.target.clientWidth
+    );
+    let newMouseY = Math.floor(
+      ((e.clientY - offset.top) * e.target.height) / e.target.clientHeight
+    );
+
+    let mainCanvas = document.getElementById("window-canvas");
+    mainCanvas.dataset.mousex = newMouseX;
+    mainCanvas.dataset.mousey = newMouseY;
+    
+  }
+
   useEffect(() => {
       
     if (mounted === false) {
@@ -165,14 +199,50 @@ function Engine() {
     }
   }, [] );
   
-  
+  function handleMouseDown(e) {
+    const mainCanvas = document.getElementById("window-canvas");
+    const camera = document.getElementById("camera-canvas");
+    if (mouseDownTime === 0) {
+      let newMouseTime = mouseDownTime + 1;
+      setMouseDownTime(newMouseTime);
+      debugger 
+      let mouseX = mainCanvas.dataset.mousex;
+      let mouseY = mainCanvas.dataset.mousey;
+      let diffW = camera.dataset.camerawidth / mainCanvas.width;
+      let diffH = camera.dataset.cameraheight / mainCanvas.height;
+      mouseX = mouseX * diffW;
+      mouseY = mouseY * diffH;
+      mouseX = parseInt(mouseX) + parseInt(camera.dataset.x);
+      mouseY = parseInt(mouseY) + parseInt(camera.dataset.y);
+      for (const entity in entityLoop) {
+        let e = entityLoop[entity];
+        if (
+          mouseX >= e.cb.left &&
+          mouseX <= e.cb.right &&
+          mouseY >= e.cb.top &&
+          mouseY <= e.cb.bottom
+        ) {
+          setClickedThing(e.description);
+        }
+      }
+    }
+  }
+
+  function handleMouseUp(e) {
+    setMouseDownTime(0);
+  }
+
+
   return (
+    <React.Fragment>
+    <h2>{clickedThing}</h2>
     <div className="full-screen" id="main-screen" width="100%" height="100%">
       <canvas
         height="180"
         width="320"
         id="window-canvas"
-        style={{ width: "100%", height: "80%" }}
+        style={{ width: "100%", height: "85%" }}
+        onMouseMove={(e) => handleMouseMove(e)}
       ></canvas>
       <canvas
         height={tileMap.height}
@@ -193,6 +263,7 @@ function Engine() {
       <img src={TileSet} id="tile-set" hidden={true} />
       <div id="sheet-holder"></div>
     </div>
+    </React.Fragment>
   );
 }
 

@@ -10,6 +10,8 @@ class BlueWhale extends Entity {
         this.spriteX = 0
         this.spriteY = 6
         this.hsp = .5
+        this.name = 'Gray Whale'
+        this.description = 'The gray whale (Eschrichtius robustus), also known as the grey whale, gray back whale, Pacific gray whale, or California gray whale, is a baleen whale that migrates between feeding and breeding grounds yearly. It reaches a length of 14.9 meters (49 ft), a weight of up to 41 tonnes (90,000 lb) and lives between 55 and 70 years, although one female was estimated to be 75-80 years of age. The common name of the whale comes from the gray patches and white mottling on its dark skin. Gray whales were once called devil fish because of their fighting behavior when hunted. The gray whale is the sole living species in the genus Eschrichtius, which in turn is the sole living genus in the family Eschrichtiidae. This mammal is descended from filter-feeding whales that appeared at the beginning of the Oligocene, over 30 million years ago.'
     }
 
     collidingWithMap(x, y) {

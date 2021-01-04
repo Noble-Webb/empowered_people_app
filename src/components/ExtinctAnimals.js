@@ -31,7 +31,7 @@ handleChange = (e) => {
   componentDidMount(){
       fetch('http://localhost:3002/mammals')
       .then(resp => resp.json())
-      .then(mammals =>{ 
+      .then(mammals =>{   
         this.props.fetchTheDeadWorks(mammals)})
   }
   
@@ -40,9 +40,11 @@ handleChange = (e) => {
       <Switch>
         <Route path='/learn' render={() => {
           return <div>
-            <div style = {{textAlign: 'center', paddingTop: '30vh'}}>
-          <input name='search' value={this.state.search} onChange={this.handleChange} onKeyDown={this.query} placeholder = 'Search by Family or Common Name!'/>
-          <br></br>
+            <h3>There's so much to explore!</h3>
+
+            <h4 ><span id="Hey">Enter a Family or Common Name into the bar below. Press enter to initiate search</span></h4>
+            <div  style = {{textAlign: 'center'}}>
+          <input id="animal-searchbar" name='search' value={this.state.search} onChange={this.handleChange} onKeyDown={this.query} placeholder = 'Search'/>
           </div>
           <div>
             { localStorage.getItem("my_app_token") ?

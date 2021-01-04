@@ -3,7 +3,9 @@
   
 }
 
-
+#animal-searchbar{
+  margin: 0 auto;
+}
 
 
 /* ----- Global ----- */
@@ -11,29 +13,21 @@
 	box-sizing: border-box;
 } */
 
-html,
-body {
-  height: 100%;
-  /* overflow: hidden; */
-}
 
 body {
-	/* display: grid; */
-	/* grid-template-rows: 1fr; */
+  height: 100%;
+  display: grid;
+	grid-template-rows: 3fr; 
 	font-family: "Raleway", sans-serif;
-	background-image: url('bgimages/10.jpg');
+  background-image: url('bgimages/10.jpg');
+  
 }
 
 h3 {
-	font-size: 1em;
+	font-size: 3em;
 	letter-spacing: 1.2px;
-	color: #643535;
+	color: black;
 }
-
-/* img {
-			max-width: 100%;
-			filter: drop-shadow(1px 1px 3px #a6a6a6);
-		} */
 
 /* ----- Product Section ----- */
 .product {

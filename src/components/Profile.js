@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Form } from 'semantic-ui-react'
 import { currentUser } from "../actions/auth";
 import { editPost, removePost, fetchPostsWorks } from "../actions/posts";
+
 import smile from '../bgimages/13.jpg'
 
 
@@ -21,6 +22,7 @@ class Profile extends React.Component{
   
   
   
+
   
   handleChange = (e) => {
     const { value, name } = e.target;
@@ -131,14 +133,6 @@ class Profile extends React.Component{
 <ul>
   <li>Quality Content: {content}</li>
 </ul>
-{/* <button 
-        type="button" 
-        id={id}
-        name='edit'
-        value={title, content}
-        onClick={this.handlePostEdit} >
-        Edit Post
-      </button> */}
 
       <button 
         id={id}

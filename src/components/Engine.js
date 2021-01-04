@@ -1,11 +1,16 @@
 import React, { Component, useState, useEffect } from "react";
 import Entity from "../Assets/Entities/Entity";
 import Player from "../Assets/Entities/Player"
+import Raptor from "../Assets/Entities/Raptor";
+import DireWolf from "../Assets/Entities/DireWolf";
+import BlueWhale from "../Assets/Entities/BlueWhale";
+import Rodent from "../Assets/Entities/Rodent";
 import TileDraw from "./TileDraw";
 import TileSet from '../container/Assets/Tilesets/TileSet.png'
 function Engine() {
   const [mounted, setMounted] = useState(false);
   const [timer, setTimer] = useState(null)
+
   let map = [
     [58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,], 
     [18,19,12,12,12,12,12,18,29,58,12,12,12,12,12,12,12,12,34,24,], 
@@ -108,6 +113,7 @@ function Engine() {
     mainCtx.fillRect(0, 0, 640, 480);
   }
   function loop() {
+    if(window.location.pathname === "/games/play"){
     tileMap.drawBuffer();
     count += 1;
     for (const entity in entityLoop) {
@@ -130,7 +136,9 @@ function Engine() {
       0,
       mainCanvas.width,
       mainCanvas.height
-    );
+    );} else{ 
+      clearInterval(timer)
+    }
   }
   useEffect(() => {
       
@@ -140,16 +148,24 @@ function Engine() {
       setMounted(true);
       camera = document.getElementById("camera-canvas");
       cameraCtx = camera.getContext("2d");
-      entityLoop = { 0: new Entity(setProps(), 304, 48) };
+      entityLoop = { 
+        0: new Entity(setProps(), 304, 48), 
+        1: new Raptor(setProps(), 16, 16), 
+        2: new DireWolf(setProps(), 65, 48), 
+        3: new BlueWhale(setProps(), 80, 104), 
+        4: new Rodent(setProps(), 160, 16) };
+
       mainCanvas = document.getElementById("window-canvas");
       mainCtx = mainCanvas.getContext("2d");
       tileMap.draw();
+      // debugger 
     }
-    return function cleanup(){
-        clearInterval(timer)
+    return function cleanUp(){
+        setMounted(false)
     }
   }, [] );
-
+  
+  
   return (
     <div className="full-screen" id="main-screen" width="100%" height="100%">
       <canvas
@@ -179,5 +195,6 @@ function Engine() {
     </div>
   );
 }
+
 
 export default Engine;

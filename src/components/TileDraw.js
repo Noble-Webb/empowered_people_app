@@ -2,6 +2,7 @@ import TileSet from '../container/Assets/Tilesets/TileSet.png'
 
 
 class TileDraw {
+  
   constructor(map) {
     this.map = map
     this.width = this.map[0].length * 16;

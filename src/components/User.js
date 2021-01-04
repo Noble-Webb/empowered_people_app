@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from "react-redux";
 import Profile from './Profile'
+import { Dropdown, options } from 'semantic-ui-react'
 import { logoutUser } from "../actions/auth";
 import { fetchUsersWorks, removeUser, editUser } from "../actions/users"; 
 import { fetchPostsWorks, removePost, editPost} from "../actions/posts"
@@ -19,15 +20,34 @@ class User extends React.Component {
     } 
   } 
 
+  imageOptions = [
+    {
+     image: { avatar: true, key: 1, name: "profile_pic", value: 'https://react.semantic-ui.com/images/avatar/small/jenny.jpg' , src: 'https://react.semantic-ui.com/images/avatar/small/jenny.jpg' },
+   },
+   {
+     image: { avatar: true, key: 2, name: "profile_pic", value: 'https://react.semantic-ui.com/images/avatar/small/elliot.jpg', src: 'https://react.semantic-ui.com/images/avatar/small/elliot.jpg' },
+   },
+   {
+     image: { avatar: true, key: 3, name: "profile_pic", value: 'https://react.semantic-ui.com/images/avatar/small/stevie.jpg', src: 'https://react.semantic-ui.com/images/avatar/small/stevie.jpg' },
+   },
+   {
+     image: { avatar: true, key: 4, name: "profile_pic", value: 'https://react.semantic-ui.com/images/avatar/small/christian.jpg', src: 'https://react.semantic-ui.com/images/avatar/small/christian.jpg' },
+   },
+   {
+     image: { avatar: true, key: 5, name: "profile_pic", value: 'https://react.semantic-ui.com/images/avatar/small/matt.jpg', src: 'https://react.semantic-ui.com/images/avatar/small/matt.jpg' },
+   },
+   {
+     image: { avatar: true, key: 6, name: "profile_pic", value: 'https://react.semantic-ui.com/images/avatar/small/justen.jpg', src: 'https://react.semantic-ui.com/images/avatar/small/justen.jpg' },
+   },
+ ]
+
+ DropdownExampleClearable = () => (
+   <Dropdown clearable options={this.imageOptions} selection />
+ )
+
   handleLogout = () => {
     localStorage.removeItem('my_app_token')
     this.props.logoutUser()
-  }
-
-  handleAvatarChange = (e) => {
-    this.setState({
-      profile_pic: e.target.files[0],
-    });
   }
 
   handleChange = (e) => {
@@ -91,7 +111,7 @@ class User extends React.Component {
   }
 
   handleProfile = () => {
-    const newBoolean = !this.state.display
+    let newBoolean = !this.state.show
     this.setState({show: newBoolean})
   }
   
@@ -125,7 +145,7 @@ class User extends React.Component {
           {this.state.error ? <h4 style={{color: 'red'}}>{this.state.error}</h4> : null}
           {localStorage.getItem("my_app_token") ?
         <div className="row justify-content-center">
-           <div> <h1 id='Hey'>Profile Page</h1> </div>
+           <div> <h1>Profile Page</h1> </div>
         {this.state.show ? 
               <form onSubmit={this.handleSubmit}>
                 <input
@@ -137,11 +157,7 @@ class User extends React.Component {
                 />
                 <br/>
                 
-                <input
-                    onChange={this.handleAvatarChange}
-                    type="file"
-                    accept="/images/*"
-                />      
+                {this.DropdownExampleClearable()} <br/>
                 <button type="submit">
                 Edit Account
                 </button>

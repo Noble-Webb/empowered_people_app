@@ -21,7 +21,6 @@ import third from './bgimages/2.jpg'
 import fourth from './bgimages/3.jpg'
 import fifth from './bgimages/4.jpg'
 import sixth from './bgimages/5.jpg'
-import seventh from './bgimages/6.jpg'
 import eighth from './bgimages/7.jpg'
 import nineth from './bgimages/8.jpg'
 import tenth from './bgimages/9.jpg'
@@ -60,10 +59,11 @@ class App extends Component {
   }
   render(){
     //randomized background image with reload. Will A
-    let array = [first, second, third, fourth, fifth, sixth, seventh, eighth, nineth, tenth]
-    let img = Math.floor( Math.random() * 10 )
+    let array = [first, second, third, fourth, fifth, sixth, eighth, nineth, tenth]
+    let img = Math.floor( Math.random() * 9 )
 
     return (
+      
       <div className="App" style={{backgroundImage: `url(${array[img]})`, 
         height: '100%'}}>
         <Navbar icon="puzzle" title="Empowered People" description="Explore Your Imagination"/>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { signupSuccess } from '../actions/signup'
+import { Dropdown, options } from 'semantic-ui-react'
 
 class Signup extends Component {
 	constructor(props) {
@@ -11,18 +12,37 @@ class Signup extends Component {
 			profile_pic: '',
 		};
 	}
+ 
+  imageOptions = [
+     {
+      image: { avatar: true, key: 1, name: "profile_pic", value: 'https://react.semantic-ui.com/images/avatar/small/jenny.jpg' , src: 'https://react.semantic-ui.com/images/avatar/small/jenny.jpg' },
+    },
+    {
+      image: { avatar: true, key: 2, name: "profile_pic", value: 'https://react.semantic-ui.com/images/avatar/small/elliot.jpg', src: 'https://react.semantic-ui.com/images/avatar/small/elliot.jpg' },
+    },
+    {
+      image: { avatar: true, key: 3, name: "profile_pic", value: 'https://react.semantic-ui.com/images/avatar/small/stevie.jpg', src: 'https://react.semantic-ui.com/images/avatar/small/stevie.jpg' },
+    },
+    {
+      image: { avatar: true, key: 4, name: "profile_pic", value: 'https://react.semantic-ui.com/images/avatar/small/christian.jpg', src: 'https://react.semantic-ui.com/images/avatar/small/christian.jpg' },
+    },
+    {
+      image: { avatar: true, key: 5, name: "profile_pic", value: 'https://react.semantic-ui.com/images/avatar/small/matt.jpg', src: 'https://react.semantic-ui.com/images/avatar/small/matt.jpg' },
+    },
+    {
+      image: { avatar: true, key: 6, name: "profile_pic", value: 'https://react.semantic-ui.com/images/avatar/small/justen.jpg', src: 'https://react.semantic-ui.com/images/avatar/small/justen.jpg' },
+    },
+  ]
+ 
+  DropdownExampleClearable = () => (
+    <Dropdown options={this.imageOptions} selection />
+  )
 
   handleChange = (e) => {
       const { value, name } = e.target;
       this.setState({
         [name]: value
       });
-  }
-
-  handleAvatarChange = (e) => {
-    this.setState({
-      profile_pic: e.target.files[0],
-    });
   }
 
   handleSubmit = (e) => {
@@ -76,11 +96,7 @@ render() {
             />
             <br/>
 			
-            <input
-                onChange={this.handleAvatarChange}
-                type="file"
-                accept="/images/*"
-            />      
+           {this.DropdownExampleClearable()} <br/>
             <button type="submit">
             Create Account
             </button>

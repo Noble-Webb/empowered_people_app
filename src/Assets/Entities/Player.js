@@ -112,7 +112,7 @@ class Entity {
     } else {
       this.animateFrame = false;
     }
-
+    
     if (this.animateFrame) {
       this.spriteY = 1;
     } else {
@@ -130,12 +130,11 @@ class Entity {
       left: this.x + 3,
       right: this.x + 12,
       top: this.y + 10,
-      bottom: this.y + 15,
+      bottom: this.y + 15, 
     };
     if (this.movesWithKeysCheck) {
       this.movesWithKeys();
     }
-
     // console.log(this.x,this.y)
 
     if (this.bindCameraToEntity) {

@@ -81,7 +81,7 @@ class Profile extends React.Component{
   }
 
   render(){
-    const {title, content, id, upvote} = this.props.post
+    const {title, content, id, upvote, family} = this.props.post
     console.log(this.state.posts)
     
 
@@ -124,9 +124,9 @@ class Profile extends React.Component{
 <div class="wrapper">
 <div class="card">
 <div class="front">
-<h1>{title}</h1>
-<p><span>family</span></p>
-<p class="price">＼(^-^)／ {upvote}</p>
+<h1>Title: {title}</h1>
+<p><span>{family}</span></p>
+<p class="price">＼(^-^)／ Likes: {upvote}</p>
 </div>
 <div class="right">
 <h2>{title}</h2>

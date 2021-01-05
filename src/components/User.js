@@ -20,6 +20,12 @@ class User extends React.Component {
     } 
   } 
 
+  familyOptions =[
+    {
+      
+    }
+  ]
+
   imageOptions = [
     {
      image: { avatar: true, key: 1, name: "profile_pic", value: 'https://react.semantic-ui.com/images/avatar/small/jenny.jpg' , src: 'https://react.semantic-ui.com/images/avatar/small/jenny.jpg' },
@@ -145,7 +151,7 @@ class User extends React.Component {
           {this.state.error ? <h4 style={{color: 'red'}}>{this.state.error}</h4> : null}
           {localStorage.getItem("my_app_token") ?
         <div className="row justify-content-center">
-           <div> <h1>Profile Page</h1> </div>
+           <div> <h1>Welcome to your Profile Page {this.props.users.username}</h1> </div>
         {this.state.show ? 
               <form onSubmit={this.handleSubmit}>
                 <input

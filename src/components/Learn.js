@@ -4,15 +4,13 @@ class Learn extends React.Component {
     constructor(){
         super()
         this.state = {
-          search: '' 
-        //   showDetails: false,
-        //   display: false,
+          search: ''
         }
     }
-    // handleClick = () => {
-    //     let newBoolean = !this.state.display
-    //     this.setState({display: newBoolean})
-    // }
+    handleClick = () => {
+        let newBoolean = !this.state.display
+        this.setState({display: newBoolean})
+    }
 
     urlTab = (url) => {
         console.log(url)
@@ -148,13 +146,12 @@ class Learn extends React.Component {
         </section>
 
         <footer>
-            <button onClick={()=>this.urlTab(url)}> Drink from the Tap? </button>
+            <button onClick={()=>this.urlTab(url)}> Go to the source of this information </button>
         </footer>                 
      </div>   
 
         }
-     </div>   
-
+     </div>      
     )}
 }
 export default Learn

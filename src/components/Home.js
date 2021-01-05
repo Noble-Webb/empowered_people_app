@@ -24,6 +24,8 @@ class Home extends React.Component {
             
         { this.state.display
             ?
+            <img className="whole" src='https://thumbs.dreamstime.com/b/set-extinct-birds-animals-names-list-mammals-sea-creatures-ceased-to-exist-isolated-vector-images-species-can-131490030.jpg' alt="diverse group of animals"></img> 
+            :
             <div id="Hey"> <h1>Welcome to Library!</h1>
            
             <h3>Earth is punctuated by five major extinction events. The end-Permian extinction event is thought of as the most dramatic example, taking nearly 95% of all life at the time. [Vijda, Mcloughlin 2005] Only 50 Mya after the end-Permian extinction began the Triassic - Jurassic extinction. This extinction saw the end of 70% of vertebrates and nearly 100% of shallow marine life. Strangely enough, a large number of terrestrial plants were vastly unaffected. During the end-Triassic extinction, close to half of all the life that existed at the time went extinct. These types of events are important to study because they give insight into CO2 change, oxygen levels, climate, and fauna/flora growth. These extinctions have fundamentally changed the planet inside and out. [Kunin, W.E.; Gaston, Kevin, eds. (31 December 1996)]</h3> <br/>
@@ -32,8 +34,6 @@ class Home extends React.Component {
  
                <h1>Please Login to start exploring</h1> </div>
             
-            :
-            <img className="whole" src='https://thumbs.dreamstime.com/b/set-extinct-birds-animals-names-list-mammals-sea-creatures-ceased-to-exist-isolated-vector-images-species-can-131490030.jpg'></img> 
         }
         <button onClick={this.handleClick}> Click Me!! </button>
         <h1>Welcome to Empowered People!</h1>

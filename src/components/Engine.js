@@ -41,6 +41,7 @@ function Engine() {
   let left = false;
   let right = false;
   let action = false;
+  let clear = false;
   let entityLoop = {};
   let count = 0;
   let mainCanvas = null;
@@ -64,7 +65,9 @@ function Engine() {
       keys: {up: up,
       down: down,
       left: left,
-      right: right, action: action},
+      right: right,
+      action: action,
+      clear: clear},
       count: count,
       canvas: camera,
       ctx: cameraCtx,
@@ -89,6 +92,9 @@ function Engine() {
       case "e":
         action = true;
         break;  
+      case " ":
+        clear = true;
+        break;
     }
   }
   function checkKeyUp(e) {
@@ -108,6 +114,9 @@ function Engine() {
       case "e":
         action = false;
         break;
+        case " ":
+          clear = false;
+          break;
     }
   }
 
@@ -205,7 +214,7 @@ function Engine() {
     if (mouseDownTime === 0) {
       let newMouseTime = mouseDownTime + 1;
       setMouseDownTime(newMouseTime);
-      debugger 
+      // debugger 
       let mouseX = mainCanvas.dataset.mousex;
       let mouseY = mainCanvas.dataset.mousey;
       let diffW = camera.dataset.camerawidth / mainCanvas.width;
@@ -216,6 +225,7 @@ function Engine() {
       mouseY = parseInt(mouseY) + parseInt(camera.dataset.y);
       for (const entity in entityLoop) {
         let e = entityLoop[entity];
+
         if (
           mouseX >= e.cb.left &&
           mouseX <= e.cb.right &&
@@ -231,11 +241,17 @@ function Engine() {
   function handleMouseUp(e) {
     setMouseDownTime(0);
   }
-
+function clearClick(){
+  console.log("hey")
+  setClickedThing(" ") 
+}
 
   return (
     <React.Fragment>
-    <h2>{clickedThing}</h2>
+      <div className="floating-">
+    <h3><span id='Hey'>{clickedThing}</span></h3>
+    {clickedThing === " " ? null : <button onClick={()=> clearClick()}>Clear</button>}
+    </div>
     <div className="full-screen" id="main-screen" width="100%" height="100%">
       <canvas
         height="180"

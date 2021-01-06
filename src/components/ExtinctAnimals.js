@@ -53,9 +53,9 @@ urlTab = (url) => {
           <div>
             { localStorage.getItem("my_app_token") ?
           <div>
-             <h3><span id="Hey"> There's so much to explore!</span></h3>
-
-              <h4 ><span id="Hey">Enter a Family or Common Name into the bar below. Press enter to initiate search</span></h4>
+             <h3><span id="Hey"> There's so much to explore. {this.props.thedead.length} animals to be exact!</span></h3>
+                    
+              <h4 ><span id="Hey">You can search the database by Scientific Class or Common Name. Press Enter to initiate search.</span></h4>
               <div  style = {{textAlign: 'center'}}>
               <input id="animal-searchbar" name='search' value={this.state.search} onChange={this.handleChange} onKeyDown={this.query} placeholder = 'Search'/>
               </div>

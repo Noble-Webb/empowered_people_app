@@ -77,7 +77,7 @@ render() {
     <div className='signup'>
       {this.state.error ? <h3 style={{color: 'red'}}>{this.state.error}</h3> : null}
 	  <form onSubmit={this.handleSubmit}>
-		  <h3>Are you looking to become a member?</h3>
+		  <h3><span id="Hey">Are you looking to become a member?</span></h3>
             <input
                 onChange={this.handleChange}
                 type="text"
@@ -96,7 +96,7 @@ render() {
             />
             <br/>
 			
-           {this.DropdownExampleClearable()} <br/>
+           {/* {this.DropdownExampleClearable()} <br/> */}
             <button type="submit">
             Create Account
             </button>

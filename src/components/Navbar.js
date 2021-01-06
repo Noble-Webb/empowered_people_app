@@ -45,7 +45,7 @@ class Navbar extends React.Component {
             Posts Page
           </NavLink>
           <NavLink className="item" to='/learn' >Learn from The Past</NavLink>
-          <NavLink onClick={this.urlTab} className="item" to='/games/play' >Interact with the Past</NavLink>
+          <NavLink className="item" to='/games/play' >Interact with the Past</NavLink>
           <NavLink className="item" to="/users/profile" >
             Profile Page
           </NavLink>

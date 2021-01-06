@@ -21,7 +21,7 @@ body {
   height: 100%;
   display: grid;
 	grid-template-rows: 3fr; 
-	font-family: "Raleway", sans-serif;
+  font-family: 'Courier New', monospace;
   background-image: url('bgimages/10.jpg');
   
 }
@@ -216,7 +216,10 @@ footer a {
 
 #Hey {
   background-color: tan;
-
+  font-family: 'Courier New', monospace;
+  border: 2px solid red;
+  border-radius: 5px;
+  box-shadow: black;
 }
 /* #post{
   background: #eee;
@@ -375,13 +378,23 @@ p{
 .card li{
   padding-bottom: 8px;
   position: relative;
+  background-color: gray;
+  font-family: 'Courier New', monospace;
+  border: 2px solid gray;
+  border-radius: 5px;
+  box-shadow: black;
+
 }
 
 .card li:before{
   content: 'ʕ•ᴥ•ʔ';
   position: absolute;
   left: -21px;
-  opacity: .55;
+  opacity: .4;
+  background-color: gray;
+  font-family: 'Courier New', monospace;
+  border: 2px solid gray;
+  border-radius: 5px;
 } 
 
 .card button{
@@ -431,7 +444,7 @@ card .price{
 
 @keyframes fadeIn{
   0%{
-    opacity: 0.23;
+    opacity: 0.20;
     transform: scale(.89);
   }
 }

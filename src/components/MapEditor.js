@@ -215,8 +215,7 @@ import { connect } from "react-redux";
 
     return (
       <div>
-        <h2>Editor</h2>
-        <h3>Current Tile {`${tileX}, ${tileY}`}</h3>
+        <h3><span id="Hey">Current Tile {`${tileX}, ${tileY}`}</span></h3>
         <form>
           <input
             type="number"

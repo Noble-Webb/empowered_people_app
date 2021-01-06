@@ -10,7 +10,7 @@ class Game extends React.Component{
           <div>
           {localStorage.getItem("my_app_token") ?
           <div>
-              <h1>Build Your Own World</h1>
+              <h1><span id="Hey">Build Your Own World</span></h1>
               <MapEditor handleSubmit={this.handleSubmit}/>
           </div>
           :

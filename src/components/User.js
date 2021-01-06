@@ -16,6 +16,7 @@ class User extends React.Component {
       username: '',
       password: '',
       profile_pic: '',
+      family: '',
       error: null
     } 
   } 
@@ -109,6 +110,7 @@ class User extends React.Component {
           this.setState({
             username: '',
             profile_pic: '',
+            family: '',
             show: 'false'})
             // this.props.editUser(updatedUser)
             window.location.reload();
@@ -151,7 +153,7 @@ class User extends React.Component {
           {this.state.error ? <h4 style={{color: 'red'}}>{this.state.error}</h4> : null}
           {localStorage.getItem("my_app_token") ?
         <div className="row justify-content-center">
-           <div> <h1>Welcome to your Profile Page {this.props.users.username}</h1> </div>
+           <div> <h1><span id="Hey">Welcome to your Profile Page {this.props.users.username}</span></h1> </div>
         {this.state.show ? 
               <form onSubmit={this.handleSubmit}>
                 <input
@@ -162,8 +164,14 @@ class User extends React.Component {
                     required
                 />
                 <br/>
-                
-                {this.DropdownExampleClearable()} <br/>
+                <input
+                    onChange={this.handleChange}
+                    type="text"
+                    name="family"
+                    placeholder="Join a family"
+                    required
+                />
+                {/* {this.DropdownExampleClearable()} <br/> */}
                 <button type="submit">
                 Edit Account
                 </button>

@@ -43,18 +43,23 @@ class Login extends React.Component {
     })
   }
 
+  urlTab = () => {
+    // console.log(url)
+    this.props.history.push("/signup")
+}
+
   render(){
 
     return (
       <div className="login">
         {this.state.error ? <h4 style={{color: 'red'}}>{this.state.error}</h4> : null}
-        <h3>Welcome Back Friend</h3>
+        <h3><span id="Hey">Welcome Back Friend</span></h3>
         <form onSubmit={this.handleSubmit}>
           <input name={'username'} placeholder='Username' required  onChange={this.handleInputChange} value={this.state.username} />
           <input name={'password'} onChange={this.handleInputChange} placeholder='Password' type="password" required value={this.state.password} />
           <input type='submit' value='login' />
         </form>
-         <a href='/signup'>"Sign-up!?!?!"</a> 
+         <button onClick={()=> this.urlTab()}>"Sign-up!?!?!"</button> 
       </div>
     );
   }

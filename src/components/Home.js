@@ -20,7 +20,7 @@ class Home extends React.Component {
     
     render(){
     return ( 
-        <div id='Hey'>
+        <div>
             
         { this.state.display
             ?

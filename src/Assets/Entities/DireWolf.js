@@ -21,6 +21,13 @@ class DireWolf extends Entity {
             bottom: this.y + 15
         }
         this.animates()
+        // console.log(this.entityLoop)
+        //checks for the player's direction 
+        if(this.entityLoop[0].x > this.x ){
+            this.spriteX = 0
+        }else {
+            this.spriteX = 2
+        }
     }
     animates(){
         this.animateClock += 1

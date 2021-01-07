@@ -23,6 +23,7 @@ class Entity {
     this.movesWithKeysCheck = true;
     this.name = "basic entity"
     this.cb = {}
+    this.entityLoop = props.entityLoop 
     document.getElementById("sheet-holder").appendChild(this.spriteSheet);
   }
   bindCamera() {
@@ -131,6 +132,7 @@ class Entity {
       top: this.y,
       bottom: this.y + 16
     }
+    this.entityLoop = props.entityLoop
   }
 
   loop() {

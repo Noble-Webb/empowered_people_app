@@ -84,6 +84,7 @@ function Engine() {
       canvas: camera,
       ctx: cameraCtx,
       map: map,
+      entityLoop: entityLoop
     };
   }
 

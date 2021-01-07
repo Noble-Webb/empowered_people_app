@@ -125,7 +125,7 @@ class Profile extends React.Component{
 <div class="card">
 <div class="front">
 <h1>Title: {title}</h1>
-<p><span>{family}</span></p>
+<h4><span>{family}</span></h4>
 <p class="price">＼(^-^)／ Likes: {upvote}</p>
 </div>
 <div class="right">

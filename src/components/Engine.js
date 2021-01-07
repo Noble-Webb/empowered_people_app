@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component, useState, useEffect, useRef} from "react";
 import Entity from "../Assets/Entities/Entity";
 import Player from "../Assets/Entities/Player"
 import Raptor from "../Assets/Entities/Raptor";
@@ -7,12 +7,19 @@ import BlueWhale from "../Assets/Entities/BlueWhale";
 import Rodent from "../Assets/Entities/Rodent";
 import TileDraw from "./TileDraw";
 import TileSet from '../container/Assets/Tilesets/TileSet.png'
+import Main from '../container/Assets/Musics/main.MP3'
+import Intro from '../container/Assets/Musics/intro.MP3'
+
 
 function Engine() {
   const [mounted, setMounted] = useState(false);
-  const [timer, setTimer] = useState(null)
+  const [timer, setTimer] = useState(null);
   const [mouseDownTime, setMouseDownTime] = useState(0);
   const [clickedThing, setClickedThing] = useState("Use the keys 'wasd' to navigate the world. and click on an animal to learn more about it.");
+  const audio = useRef(null)
+  const intro = useRef(new Audio(Intro))
+  const main = useRef(new Audio(Main))
+
   let map = [
     [58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,], 
     [18,19,12,12,12,12,12,18,29,58,12,12,12,12,12,12,12,12,34,24,], 
@@ -42,6 +49,7 @@ function Engine() {
   let right = false;
   let action = false;
   let clear = false;
+  let go = false;
   let entityLoop = {};
   let count = 0;
   let mainCanvas = null;
@@ -54,6 +62,7 @@ function Engine() {
   let cameraWidth = 160;
   let cameraHeight = 120;
   let entityCount = 0
+ 
 
   document.addEventListener("keydown", (e) => checkKeyDown(e));
   document.addEventListener("keyup", (e) => checkKeyUp(e));
@@ -136,6 +145,7 @@ function Engine() {
     if(window.location.pathname === "/games/play"){
     tileMap.drawBuffer();
     count += 1;
+
     for (const entity in entityLoop) {
       entityLoop[entity].setProps(setProps());
       // entity.loop()
@@ -146,6 +156,7 @@ function Engine() {
     for (const entity in entityLoop) {
       entityLoop[entity].draw();
     }
+    mainCtx.translate(0.5, 0.5)
     mainCtx.drawImage(
       camera,
       parseInt(camera.dataset.x),
@@ -166,6 +177,7 @@ function Engine() {
     );} else{ 
       clearInterval(timer)
     }
+    mainCtx.translate(-0.5, -0.5)
   }
 
   function handleMouseMove(e) {
@@ -182,11 +194,21 @@ function Engine() {
     mainCanvas.dataset.mousey = newMouseY;
     
   }
+ function playAudio() {
+   audio.current.removeEventListener("ended", null)
+    audio.current = main.current 
+    audio.current.play()
+    audio.current.addEventListener("ended", ()=> playAudio())
+ }
 
   useEffect(() => {
       
     if (mounted === false) {
-      setTimer( setInterval(() => loop(), 16.66))
+      audio.current = intro.current
+      audio.current.play()
+      audio.current.addEventListener("ended", ()=> playAudio())
+      
+        setTimer( setInterval(() => loop(), 16.66))
       blankScreen();
       setMounted(true);
       camera = document.getElementById("camera-canvas");
@@ -204,7 +226,9 @@ function Engine() {
       // debugger 
     }
     return function cleanUp(){
-        setMounted(false)
+      setMounted(false)
+      audio.current.pause()
+      console.log("yooo")
     }
   }, [] );
   
@@ -232,24 +256,32 @@ function Engine() {
           mouseY >= e.cb.top &&
           mouseY <= e.cb.bottom
         ) {
+    // Music.play()
+
           setClickedThing(e.description);
         }
       }
     }
   }
 
-  function handleMouseUp(e) {
+    function handleMouseUp(e) {
     setMouseDownTime(0);
   }
 function clearClick(){
-  console.log("hey")
+  // console.log("hey")
   setClickedThing(" ") 
 }
-
+function play(){
+  console.log("hey")
+  audio.current.pause()
+  
+}
   return (
     <React.Fragment>
       <div className="floating-">
-    <h3><span id='Hey'>{clickedThing}</span></h3>
+    <h3><span id='Hey'>{clickedThing}</span></h3> 
+    <audio id='myAudio' src={Main}></audio>
+    <button onClick={()=> play()} > Stop the music?</button>
     {clickedThing === " " ? null : <button onClick={()=> clearClick()}>Clear</button>}
     </div>
     <div className="full-screen" id="main-screen" width="100%" height="100%">
@@ -257,7 +289,7 @@ function clearClick(){
         height="180"
         width="320"
         id="window-canvas"
-        style={{ width: "100%", height: "85%" }}
+        style={{ width: "60%", height: "auto" }}
         onMouseMove={(e) => handleMouseMove(e)}
       ></canvas>
       <canvas

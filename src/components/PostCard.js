@@ -26,7 +26,7 @@ class PostCard extends React.Component{
   
   render(){
 
-    const {title, content, id, upvote, author, kingdom} = this.props.post 
+    const {title, content, id, upvote, author, family} = this.props.post 
     return(
       <div >
     
@@ -37,7 +37,7 @@ class PostCard extends React.Component{
   <div className="card">
     <div className="front">
       <h1>{title}</h1>
-      <p>{author}<span>{kingdom}</span></p>
+      <p>{author}<span>{family}</span></p>
       <p className="price">＼(^-^)／ Likes: {upvote}</p>
     </div>
     <div className="right">

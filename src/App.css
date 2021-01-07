@@ -66,9 +66,9 @@ h3 {
 }
 
 .photo-main img {
-  position: absolute;
-  top: 3em;
-  max-width: 110%;
+  position: relative;
+  /* top: 3em; */
+  max-width: 100%;
   filter: saturate(150%) contrast(120%) hue-rotate(10deg)
     drop-shadow(1px 20px 10px rgba(0, 0, 0, 0.3));
 }
@@ -262,13 +262,14 @@ footer a {
   perspective: 800px;
   position: relative;
   display: flex;
+  padding: 20px;
+
 }
 
 .card{
   width: 320px;
   max-height: 300px;
   border: 2px white;
-
   position: relative;
   transform-style: preserve-3d;
   transform: translateZ(-140px);
@@ -294,8 +295,9 @@ footer a {
 .right{ 
   background-image: linear-gradient(0deg, rgba(145,141,144,1) 0%, rgba(92,91,94,0) 100%);
   opacity: 0.08;
-  transform: rotateY(90deg) translateZ(160px);
+  transform: rotateY(90deg) translateZ(110px);
   border-radius: 0 0 3px 34px;
+
 }
 
 .card:hover{
@@ -312,7 +314,7 @@ footer a {
 
 .card h1,h2{
   margin: 0;
-  font-size: 38px;
+  font-size: 34px;
   letter-spacing: -.25px;
   transform: translateX(-44px);
   font-family: 'Sarala'; 
@@ -347,7 +349,7 @@ p{
 .img-wrapper{
   animation: float 4s cubic-bezier(0.390, 0.575, 0.565, 1.000) infinite alternate;
   position: fixed;
-  bottom:0; left: 0;
+  bottom:0; left: auto;
   pointer-events: none;
   backface-visibility: hidden;
 }
@@ -445,7 +447,7 @@ card .price{
 @keyframes fadeIn{
   0%{
     opacity: 0.20;
-    transform: scale(.89);
+    transform: scale(.79);
   }
 }
 

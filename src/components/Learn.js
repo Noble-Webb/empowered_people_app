@@ -1,4 +1,5 @@
 import React from 'react'
+// import {DireLeft} from '../Assets/DireLeft.png'
 
 class Learn extends React.Component {
     constructor(){
@@ -39,7 +40,7 @@ class Learn extends React.Component {
 					<i class="material-icons">Game Sprite in Development</i>
 					
 				</div>
-				    <img src="https://res.cloudinary.com/john-mantas/image/upload/v1537291846/codepen/delicious-apples/green-apple-with-slice.png" alt="green apple slice"/>
+				    <img src={"https://image.shutterstock.com/z/stock-photo-large-group-of-african-safari-animals-composited-together-in-a-scene-of-the-grasslands-of-kenya-727249072.jpg"} alt="green apple slice"/>
 			</div>
 			<div class="photo-album">
 				<ul>
@@ -60,13 +61,13 @@ class Learn extends React.Component {
                     Description: <span> {description}</span>
                 </div>
                 <div class="variant">
-                    <h3>Select a sprite</h3>
+                    {/* <h3>Select a sprite</h3>
                     <ul>
                         <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302064/codepen/delicious-apples/green-apple2.png" alt="green apple"/></li>
                         <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302752/codepen/delicious-apples/yellow-apple.png" alt="yellow apple"/></li>
                         <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302427/codepen/delicious-apples/orange-apple.png" alt="orange apple"/></li>
                         <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302285/codepen/delicious-apples/red-apple.png" alt="red apple"/></li>
-                    </ul>
+                    </ul> */}
                 </div>
                 <div class="description">
                     <h3>Scientific Classification</h3>
@@ -99,7 +100,7 @@ class Learn extends React.Component {
 					<i class="material-icons">Game Sprite in Development</i>
 					
 				</div>
-				    <img src="https://res.cloudinary.com/john-mantas/image/upload/v1537291846/codepen/delicious-apples/green-apple-with-slice.png" alt="green apple slice"/>
+				    <img src="https://image.shutterstock.com/z/stock-photo-large-group-of-african-safari-animals-composited-together-in-a-scene-of-the-grasslands-of-kenya-727249072.jpg"/>
 			</div>
 			<div class="photo-album">
 				<ul>
@@ -120,13 +121,13 @@ class Learn extends React.Component {
                     Description: <span> {description}</span>
                 </div>
                 <div class="variant">
-                    <h3>Select a sprite</h3>
+                    {/* <h3>Select a sprite</h3>
                     <ul>
                         <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302064/codepen/delicious-apples/green-apple2.png" alt="green apple"/></li>
                         <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302752/codepen/delicious-apples/yellow-apple.png" alt="yellow apple"/></li>
                         <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302427/codepen/delicious-apples/orange-apple.png" alt="orange apple"/></li>
                         <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302285/codepen/delicious-apples/red-apple.png" alt="red apple"/></li>
-                    </ul>
+                    </ul> */}
                 </div>
                 <div class="description">
                     <h3>Scientific Classification</h3>

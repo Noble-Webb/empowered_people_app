@@ -168,7 +168,7 @@ class User extends React.Component {
                     onChange={this.handleChange}
                     type="text"
                     name="family"
-                    placeholder="Join a family"
+                    placeholder="Join a Class"
                     required
                 />
                 {/* {this.DropdownExampleClearable()} <br/> */}

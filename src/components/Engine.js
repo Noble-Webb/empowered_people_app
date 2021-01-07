@@ -61,8 +61,9 @@ function Engine() {
   let cameraY = 0;
   let camera = null;
   let cameraCtx = null;
-  let cameraWidth = 160;
-  let cameraHeight = 120;
+  //take (camera width / 4) * 3   4:3 ratio
+  let cameraWidth = 190;// multiple of 4
+  let cameraHeight = 142.5;// mutiple 3
   let entityCount = 0
  
 
@@ -217,10 +218,19 @@ function Engine() {
       cameraCtx = camera.getContext("2d");
       entityLoop = { 
         0: new Entity(setProps(), 288, 244), 
-        1: new Raptor(setProps(), 16, 16), 
-        2: new DireWolf(setProps(), 65, 48), 
-        3: new BlueWhale(setProps(), 80, 104), 
-        4: new Rodent(setProps(), 160, 16) };
+        1: new Raptor(setProps(), 241, 188), 
+        2: new Raptor(setProps(), 28, 40), 
+        3: new Raptor(setProps(), 528, 72), 
+
+        4: new DireWolf(setProps(), 86, 66),
+        5: new DireWolf(setProps(), 248, 74), 
+        10: new DireWolf(setProps(), 49, 160), 
+
+        6: new BlueWhale(setProps(), 385, 112), 
+
+        7: new Rodent(setProps(), 375, 316), 
+        8: new Rodent(setProps(), 602, 303),
+        9: new Rodent(setProps(), 64, 367) };
 
       mainCanvas = document.getElementById("window-canvas");
       mainCtx = mainCanvas.getContext("2d");

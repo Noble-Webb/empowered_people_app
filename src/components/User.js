@@ -171,6 +171,7 @@ class User extends React.Component {
                     placeholder="Join a Class"
                     required
                 />
+                <p id="Hey">Not really sure what a class is? Check out our Learn tab!</p>
                 {/* {this.DropdownExampleClearable()} <br/> */}
                 <button type="submit">
                 Edit Account

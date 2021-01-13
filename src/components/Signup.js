@@ -75,7 +75,7 @@ class Signup extends Component {
 render() {
   return ( 
     <div className='signup'>
-      {this.state.error ? <h3 style={{color: 'red'}}>{this.state.error}</h3> : null}
+      {this.state.error ? <h3 id="Hey" style={{color: 'red'}}>{this.state.error}</h3> : null}
 	  <form onSubmit={this.handleSubmit}>
 		  <h3><span id="Hey">Are you looking to become a member?</span></h3>
             <input

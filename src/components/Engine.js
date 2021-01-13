@@ -1,14 +1,14 @@
 import React, { Component, useState, useEffect, useRef} from "react";
 import Entity from "../Assets/Entities/Entity";
-import Player from "../Assets/Entities/Player"
+import Player from "../Assets/Entities/Player";
 import Raptor from "../Assets/Entities/Raptor";
 import DireWolf from "../Assets/Entities/DireWolf";
-import BlueWhale from "../Assets/Entities/BlueWhale";
+import BlueWhale from "../Assets/Entities/mammals";
 import Rodent from "../Assets/Entities/Rodent";
 import TileDraw from "./TileDraw";
-import TileSet from '../container/Assets/Tilesets/TileSet.png'
-import Main from '../container/Assets/Musics/main.MP3'
-import Intro from '../container/Assets/Musics/intro.MP3'
+import TileSet from '../container/Assets/Tilesets/TileSet.png';
+import Main from '../container/Assets/Musics/main.MP3';
+import Intro from '../container/Assets/Musics/intro.MP3';
 
 
 function Engine() {
@@ -241,7 +241,7 @@ function Engine() {
     return function cleanUp(){
       setMounted(false)
       audio.current.pause()
-      console.log("yooo")
+      // console.log("yooo")
     }
   }, [] );
   

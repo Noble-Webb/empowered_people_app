@@ -10,6 +10,8 @@ import Post from "./components/Posts";
 import Login from "./components/Login";
 import Signup from './components/Signup';
 import PostForm from './components/PostForm';
+import Editor from './components/Editor';
+
 import Game from './container/Game';
 import PropTypes from 'prop-types';
 import ExtinctAnimals from './components/ExtinctAnimals';
@@ -68,7 +70,8 @@ class App extends Component {
         height: '100%'}}>
         <Navbar icon="puzzle" title="Empowered People" description="Explore Your Imagination"/>
         <Switch>
-          <Route exact path="/games" component={Game}/>
+          {/* <Route exact path="/games" component={Game}/> */}
+          <Route exact path="/games" component={Editor}/>
           <Route path="/games/play" component={Engine}/>
           <Route exact path="/empowered_people" component={Home}/>
           <Route  exact path="/posts" component={Post}/>

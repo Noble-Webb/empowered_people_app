@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect, useRef} from "react";
 import Entity from "../Assets/Entities/Entity";
 import WaterAnimal from "../Assets/Entities/WaterAnimal";
+import LLandAnimal from "../Assets/Entities/LLandAnimal";
 import Player from "../Assets/Entities/Player";
 import Raptor from "../Assets/Entities/Raptor";
 import DireWolf from "../Assets/Entities/DireWolf";

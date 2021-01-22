@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Entity from "./Entity"
 import SpriteSheet from "../PlayerSpriteSheet.png";
 
-class LLandAnimal extends Entity {
+class SLandAnimal extends Entity {
     constructor(props, x,y) {
         super(props,x,y)
         this.bindCameraToEntity = false
@@ -24,23 +24,18 @@ class LLandAnimal extends Entity {
     loop(){
         this.hb = {
             left: this.x,
-            right: this.x + 32,
+            right: this.x + 15,
             top: this.y,
             bottom: this.y + 15
         }
-        this.animates(this.hsp)
-        let sideToCheck
-        if (this.hsp > 0) {
-            sideToCheck = this.hb.right
-        } else {
-            sideToCheck = this.hb.left
+        this.animates()
+        // console.log(this.entityLoop)
+        //checks for the player's direction 
+        if(this.entityLoop[0].x > this.x ){
+            this.spriteX = 0
+        }else {
+            this.spriteX = 2
         }
-
-        if (this.collidingWithMap(sideToCheck + this.hsp, this.hb.top)) {
-            // debugger
-            this.hsp = -this.hsp
-        }
-        this.x += this.hsp
     
     }
    
@@ -49,11 +44,11 @@ class LLandAnimal extends Entity {
             this.spriteSheet,
             this.spriteX * 16,
             this.spriteY * 16,
-            32,
+            16,
             16,
             this.x,
             this.y,
-            32,
+            16,
             16   
           );
     }
@@ -62,16 +57,19 @@ class LLandAnimal extends Entity {
 
 
 
-export default LLandAnimal;
+export default SLandAnimal;
 
 
-// 
-
-// this.animates()
-//         // console.log(this.entityLoop)
-//         //checks for the player's direction 
-//         if(this.entityLoop[0].x > this.x ){
-//             this.spriteX = 0
-//         }else {
-//             this.spriteX = 2
+// this.animates(this.hsp)
+//         let sideToCheck
+//         if (this.hsp === .5) {
+//             sideToCheck = this.hb.right
+//         } else {
+//             sideToCheck = this.hb.left
 //         }
+
+//         if (this.collidingWithMap(sideToCheck + this.hsp, this.hb.top)) {
+//             // debugger
+//             this.hsp = -this.hsp
+//         }
+//         this.x += this.hsp

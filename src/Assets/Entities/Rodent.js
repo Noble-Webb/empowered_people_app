@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Entity from "./Entity"
 import SpriteSheet from "../PlayerSpriteSheet.png";
+import SLandAnimal from "./SLandAnimal";
 
-class Rodent extends Entity {
+class Rodent extends SLandAnimal {
     constructor(props, x,y) {
         super(props,x,y)
         this.bindCameraToEntity = false

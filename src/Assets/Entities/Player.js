@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import SpriteSheet from "../PlayerSpriteSheet.png";
+import Entity from "../Entities/Entity"
 
-class Entity {
+class Player extends Entity {
   constructor(props, x, y) {
+    super(props, x, y)
     this.keys = props.keys;
     this.count = props.count;
     this.canvas = props.canvas;
@@ -120,11 +122,6 @@ class Entity {
     }
   }
 
-  setProps(props) {
-    this.keys = props.keys;
-    this.count = props.count;
-  }
-
   loop() {
     this.hb = {
       left: this.x + 3,
@@ -160,4 +157,4 @@ class Entity {
   }
 }
 
-export default Entity;
+export default Player;

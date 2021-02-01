@@ -34,7 +34,7 @@ h3 {
 
 /* ----- Product Section ----- */
 .product {
-	display: grid;
+	display: right;
 	grid-template-columns: 0.9fr 1fr;
 	margin: auto;
 	padding: 2.5em 0;
@@ -95,6 +95,7 @@ h3 {
   display: flex;
   justify-content: space-around;
 }
+
 .photo-album li {
   float: left;
   width: 55px;

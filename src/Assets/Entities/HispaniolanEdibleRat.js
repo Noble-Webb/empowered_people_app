@@ -3,7 +3,7 @@ import Entity from "./Entity"
 import SpriteSheet from "../PlayerSpriteSheet.png";
 import SLandAnimal from "./SLandAnimal";
 
-class Rodent extends SLandAnimal {
+class HispaniolanEdibleRat extends SLandAnimal {
     constructor(props, x,y) {
         super(props,x,y)
         this.bindCameraToEntity = false
@@ -50,4 +50,4 @@ class Rodent extends SLandAnimal {
 
 
 
-export default Rodent;
+export default HispaniolanEdibleRat;

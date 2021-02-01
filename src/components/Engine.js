@@ -6,43 +6,58 @@ import Player from "../Assets/Entities/Player";
 import Raptor from "../Assets/Entities/Raptor";
 import DireWolf from "../Assets/Entities/DireWolf";
 import AtlanticGrayWhale from "../Assets/Entities/AtlanticGrayWhale";
-import Rodent from "../Assets/Entities/Rodent";
+import HispaniolanEdibleRat from "../Assets/Entities/HispaniolanEdibleRat";
+import AiobrnisIncrediblis from "../Assets/Entities/AiobrnisIncrediblis";
+import NewfoundlandWolf from "../Assets/Entities/NewfoundlandWolf";
+import AmericanMastodon from "../Assets/Entities/AmericanMastodon";
+import AnthonyWoodrat from "../Assets/Entities/AnthonyWoodrat";
+import Teratorns from "../Assets/Entities/Teratorns";
+import GuadalupeCaracara from "../Assets/Entities/GuadalupeCaracara";
+
 import TileDraw from "./TileDraw";
 import TileSet from '../container/Assets/Tilesets/TileSet.png';
 import Main from '../container/Assets/Musics/main.MP3';
 import Intro from '../container/Assets/Musics/intro.MP3';
+import Urlis from '../Assets/Urlis';
+import Exit from "../Assets/Exit";
 
 
 function Engine() {
   const [mounted, setMounted] = useState(false);
-  const [timer, setTimer] = useState(null);
   const [mouseDownTime, setMouseDownTime] = useState(0);
-  const [clickedThing, setClickedThing] = useState("Use the keys 'wasd' to navigate the world. and click on an animal to learn more about it.");
+  const [clickedThing, setClickedThing] = useState("Loading...");
+  const playerCoord = useRef({ x: 48, y: 48 });
+  const tileMap = useRef(null);
+  const loading = useRef(false);
+  const moveRight = useRef(false);
+  const moveLeft = useRef(false);
+  const moveDown = useRef(false);
+  const moveUp = useRef(false);
+  const mapNumber = useRef(1);
+  const map = useRef([]);
+  const entityLoop = useRef({});
+  const exitLoop = useRef({});
+  const loopInterval = useRef(null);
   const audio = useRef(null)
   const intro = useRef(new Audio(Intro))
   const main = useRef(new Audio(Main))
 
-  let map =[[28,29,28,29,28,29,21,20,21,20,21,20,21,20,21,20,21,20,28,29,21,55,58,58,58,16,39,20,28,29,21,54,20,21,20,21,20,21,20,21],[29,28,29,21,20,21,4,4,4,4,1,2,2,3,4,4,4,4,20,28,19,55,58,58,58,22,16,39,20,28,19,16,63,63,63,63,63,63,63,63],[28,29,28,19,4,1,2,2,2,2,6,12,12,6,3,4,4,4,4,20,21,55,58,58,58,58,22,16,39,20,21,22,26,26,26,26,26,26,26,26],[29,28,29,21,1,6,12,12,6,9,9,6,12,12,6,2,2,3,4,18,19,55,58,58,58,58,58,22,16,39,4,22,26,26,26,26,26,26,26,26],[21,20,21,4,5,12,12,12,7,48,48,8,6,12,12,12,12,7,18,29,21,55,58,58,58,58,58,58,22,16,39,30,26,26,26,26,26,26,26,26],[19,4,4,4,8,6,12,12,7,48,48,48,8,12,12,12,12,7,20,21,49,55,58,58,58,58,58,58,58,22,16,39,35,34,37,50,18,19,18,29],[21,4,4,4,4,5,12,12,7,48,48,48,38,63,63,63,63,63,63,63,63,17,58,58,58,58,58,58,58,58,22,55,43,44,45,50,20,28,29,28],[19,4,4,4,4,8,9,9,10,48,48,48,55,26,26,26,26,26,26,26,26,23,15,58,58,58,58,58,58,58,58,55,32,40,32,27,4,20,28,29],[28,19,4,18,19,4,4,4,4,4,48,48,55,26,26,26,26,26,26,26,26,23,55,58,58,58,58,58,58,58,58,55,4,11,4,4,4,4,20,28],[29,28,19,20,21,4,4,4,4,4,4,4,55,26,26,26,26,26,26,26,26,31,55,58,58,58,58,58,58,58,58,55,4,11,4,4,4,4,18,29],[21,20,21,4,4,4,4,4,4,4,4,4,55,18,19,18,19,49,49,49,18,19,55,62,62,62,62,62,62,62,62,47,4,11,4,4,4,4,20,28],[63,63,63,63,63,63,63,13,63,63,63,63,17,20,28,29,21,49,49,18,29,21,55,51,52,53,50,50,50,4,4,4,4,11,4,4,4,4,18,29],[26,26,26,26,26,26,26,13,26,26,26,26,23,18,29,28,19,4,4,20,28,19,55,59,60,61,50,4,4,4,4,4,4,11,4,4,4,4,20,28],[26,26,26,26,26,26,26,13,26,26,26,26,23,20,28,29,21,25,25,25,20,21,55,33,40,33,4,42,42,42,42,42,4,11,4,4,4,4,18,29],[26,26,26,26,26,26,26,13,26,26,26,26,31,18,29,21,4,33,41,33,18,19,55,4,11,4,4,42,11,11,11,42,4,11,4,4,4,4,20,28],[18,19,18,19,50,4,5,6,6,2,2,2,3,20,21,4,4,4,4,4,20,21,55,4,11,11,11,11,11,34,11,11,11,11,4,4,4,4,18,29],[29,28,29,28,19,4,8,6,6,6,6,6,6,2,2,2,2,3,4,4,4,50,55,4,4,4,4,42,11,11,11,42,4,4,4,4,4,4,20,28],[21,20,21,20,21,4,4,8,6,6,6,6,6,6,6,6,6,6,2,2,2,2,55,4,4,4,4,42,42,11,42,42,4,4,4,24,24,24,18,29],[63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,39,6,6,6,6,6,6,55,42,42,42,4,27,4,11,4,4,4,4,4,32,41,32,20,28],[26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,55,6,6,6,6,6,6,55,12,12,7,4,4,4,11,11,11,11,11,11,11,11,4,4,20],[58,58,58,58,4,4,4,1,2,12,58,58,58,10,54,55,6,6,6,6,6,6,55,12,12,7,4,4,4,11,4,4,4,18,19,4,4,4,49,38],[58,58,58,58,4,4,1,6,12,12,58,58,10,49,54,16,63,63,63,63,13,63,17,12,12,7,4,4,4,11,4,4,18,29,21,4,4,49,49,54],[58,58,58,58,4,4,5,12,6,9,9,10,18,19,54,22,26,26,26,26,13,26,23,12,12,7,4,4,4,11,4,4,20,21,4,49,49,49,49,54],[58,58,58,4,1,2,6,12,7,4,49,49,20,21,54,30,26,26,26,26,13,26,31,42,42,42,4,4,4,11,4,38,63,63,63,63,63,63,63,17],[58,58,4,4,5,6,12,12,6,2,3,4,49,49,54,4,35,36,37,4,11,4,4,4,4,4,4,4,4,11,4,55,26,26,26,26,26,26,26,23],[58,4,4,1,58,58,12,12,12,6,12,2,2,2,54,4,43,44,45,25,11,11,11,11,11,11,11,11,11,11,4,55,26,26,26,26,26,26,26,31],[58,4,1,58,58,58,9,6,12,12,12,12,58,58,54,4,33,41,33,33,4,4,4,11,4,4,4,4,4,4,4,55,6,6,6,7,49,58,58,58],[58,4,8,58,58,10,4,8,6,12,12,58,58,58,54,4,4,4,4,4,4,4,4,11,4,4,4,4,4,4,4,55,6,6,6,10,49,58,58,58],[58,4,4,8,10,4,4,4,8,6,12,12,58,58,16,63,63,63,63,63,63,63,63,13,63,63,63,63,63,63,63,17,6,6,10,49,4,58,58,58],[58,4,4,4,4,4,58,4,4,8,6,12,9,9,22,26,26,26,26,26,26,26,26,13,26,26,26,26,26,26,26,23,9,10,49,4,4,58,58,58],[58,4,4,4,4,58,58,58,49,49,5,7,18,19,30,26,26,26,26,26,26,26,26,13,26,26,26,26,26,26,26,31,18,19,48,4,58,58,58,58],[58,58,4,4,58,58,58,58,49,49,5,7,20,21,49,49,1,6,6,7,4,5,12,12,12,58,58,58,58,6,9,10,20,21,48,4,58,58,58,58],[58,58,4,4,58,58,58,49,49,49,5,6,2,2,2,2,6,6,6,10,4,5,12,12,12,12,6,6,6,10,4,48,48,4,4,4,58,58,58,58],[58,58,58,58,58,4,4,4,1,2,6,12,12,12,12,6,6,6,10,4,1,6,6,6,6,6,9,9,10,4,4,4,4,4,58,58,58,58,58,58],[58,58,58,4,4,4,4,1,6,6,12,12,12,6,6,9,9,10,4,4,5,6,6,6,6,10,4,4,4,58,58,58,58,58,58,58,58,58,58,58],[58,58,58,4,4,4,4,8,6,6,12,12,6,6,10,18,19,4,4,4,5,6,6,6,10,4,4,4,58,58,58,58,58,58,58,58,58,58,58,58],[58,58,58,58,58,4,4,4,8,9,9,9,9,10,4,20,21,4,4,4,8,9,9,9,4,4,4,4,58,58,58,58,58,58,58,58,58,58,58,58],[58,58,58,58,58,58,58,4,4,4,4,4,4,4,4,4,4,4,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58],[58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58],[58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58],]
 
   let up = false;
   let down = false;
   let left = false;
   let right = false;
-  let action = false;
   let clear = false;
-  let go = false;
-  let entityLoop = {};
   let count = 0;
   let mainCanvas = null;
   let mainCtx = null;
-  let tileMap = new TileDraw(map);
   let cameraX = 0;
   let cameraY = 0;
   let camera = null;
   let cameraCtx = null;
   //take (camera width / 4) * 3   4:3 ratio
-  let cameraWidth = 190;// multiple of 4
-  let cameraHeight = 142.5;// mutiple 3
+  let cameraWidth = 160;// multiple of 4
+  let cameraHeight = 120;// mutiple 3
   let entityCount = 0
  
 
@@ -52,17 +67,18 @@ function Engine() {
   document.addEventListener("mouseup", (e) => handleMouseUp(e));
 
   function setProps() {
+    let camera = document.getElementById("camera-canvas");
+    let cameraCtx = camera.getContext("2d");
     return {
       keys: {up: up,
       down: down,
       left: left,
       right: right,
-      action: action,
       clear: clear},
       count: count,
       canvas: camera,
       ctx: cameraCtx,
-      map: map,
+      map: map.current,
       entityLoop: entityLoop
     };
   }
@@ -81,9 +97,6 @@ function Engine() {
       case "d":
         right = true;
         break;
-      case "e":
-        action = true;
-        break;  
       case " ":
         clear = true;
         break;
@@ -103,12 +116,9 @@ function Engine() {
       case "d":
         right = false;
         break;
-      case "e":
-        action = false;
+      case " ":
+        clear = false;
         break;
-        case " ":
-          clear = false;
-          break;
     }
   }
 
@@ -124,20 +134,34 @@ function Engine() {
     mainCtx.fillStyle = "black";
     mainCtx.fillRect(0, 0, 640, 480);
   }
+
   function loop() {
-    if(window.location.pathname === "/games/play"){
-    tileMap.drawBuffer();
+    tileMap.current.drawBuffer();
+    console.log('you buff?')
     count += 1;
 
-    for (const entity in entityLoop) {
-      entityLoop[entity].setProps(setProps());
+    for (const entity in entityLoop.current) {
+      entityLoop.current[entity].setProps(setProps());
       // entity.loop()
     }
-    for (const entity in entityLoop) {
-      entityLoop[entity].loop();
+    for (const entity in entityLoop.current) {
+      entityLoop.current[entity].loop();
     }
-    for (const entity in entityLoop) {
-      entityLoop[entity].draw();
+    for (const entity in entityLoop.current) {
+      entityLoop.current[entity].draw();
+    }
+
+    for (const exit in exitLoop.current) { //checks that player is hitting an exit
+      let player = entityLoop.current[0];
+      // debugger
+      exitLoop.current[exit].setProps({
+        player: player,
+        moveMaps: () =>
+          moveMaps(exitLoop.current[exit].goTo, exitLoop.current[exit].kind),
+      });
+    }
+    for (const exit in exitLoop.current) {
+      exitLoop.current[exit].loop();
     }
     mainCtx.translate(0.5, 0.5)
     mainCtx.drawImage(
@@ -157,10 +181,36 @@ function Engine() {
       mainCanvas.dataset.mousey,
       3,
       3
-    );} else{ 
-      clearInterval(timer)
-    }
+    );
+    
     mainCtx.translate(-0.5, -0.5)
+  }
+
+  function moveMaps(goTo, kind) { // move through maps
+    clearInterval(loopInterval.current);
+    setClickedThing("loading...");
+    playerCoord.current = {x: entityLoop.current[0].x, y: entityLoop.current[0].y}
+    mapNumber.current = goTo;
+    tileMap.current = null;
+    setMounted(false);
+    map.current = [];
+    loading.current = false;
+    entityLoop.current = {};
+    exitLoop.current = {};
+    switch (kind) {
+      case "right":
+        moveRight.current = true;
+        break;
+      case "left":
+        moveLeft.current = true;
+        break;
+      case "up":
+        moveUp.current = true;
+        break;
+      case "down":
+        moveDown.current = true;
+        break;
+    }
   }
 
   function handleMouseMove(e) {
@@ -185,44 +235,195 @@ function Engine() {
  }
 
   useEffect(() => {
-      
-    if (mounted === false) {
+    if (mounted === false && map.current.length > 0) { // doesn't start till map loads 
       audio.current = intro.current
       audio.current.play()
+      console.log("test")
       audio.current.addEventListener("ended", ()=> playAudio())
       
-        setTimer( setInterval(() => loop(), 16.66))
+      loopInterval.current = setInterval(() => loop(), 16.66) // start and stop ability of the map
+
       blankScreen();
       setMounted(true);
       camera = document.getElementById("camera-canvas");
       cameraCtx = camera.getContext("2d");
-      entityLoop = { 
-        0: new Entity(setProps(), 288, 244), 
-        1: new Raptor(setProps(), 241, 188), 
-        2: new Raptor(setProps(), 28, 40), 
-        3: new Raptor(setProps(), 528, 72), 
-
-        4: new DireWolf(setProps(), 86, 66),
-        5: new DireWolf(setProps(), 248, 74), 
-        10: new DireWolf(setProps(), 49, 160), 
-
-        6: new AtlanticGrayWhale(setProps(), 385, 112), 
-
-        7: new Rodent(setProps(), 375, 316), 
-        8: new Rodent(setProps(), 602, 303),
-        9: new Rodent(setProps(), 64, 367) };
 
       mainCanvas = document.getElementById("window-canvas");
       mainCtx = mainCanvas.getContext("2d");
-      tileMap.draw();
+      tileMap.current.draw();
       // debugger 
     }
-    return function cleanUp(){
-      setMounted(false)
-      audio.current.pause()
-      // console.log("yooo")
+
+    if (map.current.length === 0 && loading.current === false) { //no map nor loading 
+      loading.current = true; 
+      console.log("you here?")
+      fetch(Urlis + "/map/show/" + `${mapNumber.current}`) 
+        .then((resp) => resp.json())
+        .then((newMap) => {
+          //If you want to create a default map, this is the place
+          console.log("you break?")
+          let brandNew = newMap.tiles.split("[").filter((string) => {
+            return string !== "";
+          });
+          let newMapReturn = [];
+          let count = 0;
+          for (const string in brandNew) {
+            newMapReturn[count] = brandNew[string]
+              .split(",")
+              .filter((s) => { // gets rid of empty strings 
+                return s !== "";
+              })
+              .filter((s) => { // ensures that they are numbers 
+                return s !== "]";
+              })
+              .map((s) => { // convert back to numbers 
+                return parseInt(s);
+              });
+            count += 1;
+          }
+          map.current = newMapReturn; 
+          tileMap.current = new TileDraw(map.current); // creating game map from created map 
+          function asyncEntities(entities) { // parse entites 
+            console.log(map.current)
+            let newEntities = entities.split("\n");
+            let emptyEntities = [];
+            for (const index in newEntities) {
+              let entity = newEntities[index].split(" ");
+              switch (entity[0]) {
+                // Add any new Entity creation to this loop
+                case "Direwolf":
+                  emptyEntities[index] = new DireWolf(
+                    setProps(),
+                    parseInt(entity[1]),
+                    parseInt(entity[2])
+                  );
+                  break;
+                case "NewfoundlandWolf":
+                  emptyEntities[index] = new NewfoundlandWolf(
+                    setProps(),
+                    parseInt(entity[1]),
+                    parseInt(entity[2])
+                  );
+                  break;
+                case "AmericanMastodon":
+                  emptyEntities[index] = new AmericanMastodon(
+                    setProps(),
+                    parseInt(entity[1]),
+                    parseInt(entity[2])
+                  );
+                  break;
+                case "AnthonyWoodrat":
+                  emptyEntities[index] = new AnthonyWoodrat(
+                    setProps(),
+                    parseInt(entity[1]),
+                    parseInt(entity[2])
+                  );
+                  break; 
+                case "AiobrnisIncrediblis":
+                  emptyEntities[index] = new AiobrnisIncrediblis(
+                    setProps(),
+                    parseInt(entity[1]),
+                    parseInt(entity[2])
+                  );
+                  break; 
+                case "Teratorns":
+                  emptyEntities[index] = new Teratorns(
+                    setProps(),
+                    parseInt(entity[1]),
+                    parseInt(entity[2])
+                  );
+                  break;
+                case "AtlanticGrayWhale":
+                  emptyEntities[index] = new AtlanticGrayWhale(
+                    setProps(),
+                    parseInt(entity[1]),
+                    parseInt(entity[2])
+                  );
+                  break;
+                case "GuadalupeCaracara":
+                  emptyEntities[index] = new GuadalupeCaracara(
+                    setProps(),
+                    parseInt(entity[1]),
+                    parseInt(entity[2])
+                  );
+                 break;
+                  case "HispaniolanEdibleRat":
+                    emptyEntities[index] = new HispaniolanEdibleRat(
+                      setProps(),
+                      parseInt(entity[1]),
+                      parseInt(entity[2])
+                    );
+                    break;
+              }
+            }
+
+            let currentX
+            let currentY
+            if (entityLoop.length > 0){ // player location to ensure function of loading 
+              currentX = entityLoop.current[0].x
+              currentY = entityLoop.current[0].y
+            } else {
+              currentX = playerCoord.current.x
+              currentY = playerCoord.current.y
+            }
+            entityLoop.current = { // create player 
+              0: new Player(
+                setProps(),
+                currentX,
+                currentY
+              ),
+            };
+                // ONE SIDE OF THE EXIT SHOULD TOUCH MAP'S BORDER
+            playerCoord.current = {x: currentX, y: currentY} // check players exit movement 
+            if (moveRight.current){
+              // debugger
+              entityLoop.current[0].x = 8 // exits width smaller than 8 to stop looping exits   
+              entityLoop.current[0].y = currentY
+              moveRight.current = false
+            }
+            if (moveLeft.current){
+              entityLoop.current[0].x = tileMap.current.width - 24 // lines up the to be 8 away after movement 
+              entityLoop.current[0].y = currentY
+              moveLeft.current = false
+            }
+            if (moveUp.current){
+              entityLoop.current[0].y = tileMap.current.height - 24 // exits height smaller than 8 to stop looping exits
+              entityLoop.current[0].x = currentX
+              moveUp.current = false
+            }
+            if (moveDown.current){
+              entityLoop.current[0].y = 8 // exits height smaller than 8 to stop looping exits
+              entityLoop.current[0].x = currentX
+              moveDown.current = false
+            }
+            for (const index in emptyEntities) { // scroll the given entites 
+              entityLoop.current[parseInt(index) + 1] =
+                emptyEntities[parseInt(index)];
+            }
+          }
+          exitLoop.current = {}
+          function asyncExits(exits) { //parse exits and add commands
+            let lines = exits.split('\n')
+            for (const index in lines) {
+              let commands = lines[index].split(' ')
+              exitLoop.current[index] = new Exit({}, commands[0], commands[1], commands[2], commands[3], commands[4], commands[5])
+            }
+          }
+          function loadCallback(entities) { // builds entites when safe 
+            setTimeout(() => asyncEntities(entities), 16);
+            setTimeout(() => asyncExits(newMap.exits), 16);
+            // debugger
+            setClickedThing("Nada");
+          }
+          setTimeout(() => loadCallback(newMap.entities), 200);
+        });
     }
-  }, [] );
+
+    // return function cleanUp(){
+    //   setMounted(false)
+    //   audio.current.pause()
+    // }
+  } );
   
   function handleMouseDown(e) {
     const mainCanvas = document.getElementById("window-canvas");
@@ -239,14 +440,14 @@ function Engine() {
       mouseY = mouseY * diffH;
       mouseX = parseInt(mouseX) + parseInt(camera.dataset.x);
       mouseY = parseInt(mouseY) + parseInt(camera.dataset.y);
-      for (const entity in entityLoop) {
-        let e = entityLoop[entity];
+      for (const entity in entityLoop.current) {
+        debugger 
         let animal = ''
         if (
-          mouseX >= e.cb.left &&
-          mouseX <= e.cb.right &&
-          mouseY >= e.cb.top &&
-          mouseY <= e.cb.bottom
+          mouseX >= entityLoop.current[entity].cb.left &&
+          mouseX <= entityLoop.current[entity].cb.right &&
+          mouseY >= entityLoop.current[entity].cb.top &&
+          mouseY <= entityLoop.current[entity].cb.bottom
         ) {
           fetch('http://localhost:3002/mammals')
           .then(resp => resp.json())
@@ -254,7 +455,7 @@ function Engine() {
            return  mammals.find(
               mammal =>{
                 // debugger 
-              if(mammal.common_name.toLowerCase() === e.name.toLowerCase()){
+              if(mammal.common_name.toLowerCase() === entityLoop.current[entity].name.toLowerCase()){
                 animal = mammal.description
               }
               console.log(animal)
@@ -267,7 +468,49 @@ function Engine() {
     }
   }
 
-    function handleMouseUp(e) {
+  function RenderPlayArea() {
+    return (
+      <React.Fragment>
+        <div
+          className="full-screen"
+          id="main-screen"
+          width="50%"
+          height="50%"
+        >
+          <canvas
+            data-mousex="0"
+            data-mousey="0"
+            height="240"
+            width="320"
+            id="window-canvas"
+            style={{ width: "50%", height: "50%" }}
+            onMouseMove={(e) => handleMouseMove(e)}
+          ></canvas>
+          <canvas
+            height={tileMap.current.height}
+            width={tileMap.current.width}
+            id="buffer-canvas"
+            hidden={true}
+          />
+          <canvas
+            data-X={0}
+            data-Y={0}
+            data-cameraWidth={cameraWidth}
+            data-cameraHeight={cameraHeight}
+            height={tileMap.current.height}
+            width={tileMap.current.width}
+            id="camera-canvas"
+            hidden={true}
+          />
+          <img src={TileSet} id="tile-set" hidden={true} />
+          <div id="sheet-holder"></div>
+        </div>
+      </React.Fragment>
+    );
+  }
+
+
+  function handleMouseUp(e) {
     setMouseDownTime(0);
   }
 function clearClick(){
@@ -280,40 +523,15 @@ function play(){
   
 }
   return (
+
     <React.Fragment>
       <div className="floating-">
-    <h3><span id='Hey'>{clickedThing}</span></h3> 
+    <h3>{clickedThing !== "Nada" ? clickedThing : "Test"}</h3> 
     <audio id='myAudio' src={Main}></audio>
     <button onClick={()=> play()} > Stop the music?</button>
     {clickedThing === " " ? null : <button onClick={()=> clearClick()}>Clear</button>}
     </div>
-    <div className="full-screen" id="main-screen" width="100%" height="100%">
-      <canvas
-        height="180"
-        width="320"
-        id="window-canvas"
-        style={{ width: "60%", height: "auto" }}
-        onMouseMove={(e) => handleMouseMove(e)}
-      ></canvas>
-      <canvas
-        height={tileMap.height}
-        width={tileMap.width}
-        id="buffer-canvas"
-        hidden={true}
-      />
-      <canvas
-        data-X={0}
-        data-Y={0}
-        data-cameraWidth={cameraWidth}
-        data-cameraHeight={cameraHeight}
-        height={tileMap.height}
-        width={tileMap.width}
-        id="camera-canvas"
-        hidden={true}
-      />
-      <img src={TileSet} id="tile-set" hidden={true} />
-      <div id="sheet-holder"></div>
-    </div>
+    {tileMap.current !== null ? RenderPlayArea() : null }
     </React.Fragment>
   );
 }

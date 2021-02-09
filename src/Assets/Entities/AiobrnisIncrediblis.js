@@ -10,7 +10,7 @@ class AiobrnisIncrediblis extends Raptor {
         this.movesWithKeysCheck = false
         this.spriteX = 0
         this.spriteY = 2
-        this.name = "Aiobrnis incrediblis"
+        this.name = "Aiolornis incredibilis"
     }
 
     animates(){

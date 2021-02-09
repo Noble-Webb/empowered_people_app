@@ -13,7 +13,6 @@ import AmericanMastodon from "../Assets/Entities/AmericanMastodon";
 import AnthonyWoodrat from "../Assets/Entities/AnthonyWoodrat";
 import Teratorns from "../Assets/Entities/Teratorns";
 import GuadalupeCaracara from "../Assets/Entities/GuadalupeCaracara";
-
 import TileDraw from "./TileDraw";
 import TileSet from '../container/Assets/Tilesets/TileSet.png';
 import Main from '../container/Assets/Musics/main.MP3';
@@ -26,14 +25,14 @@ function Engine() {
   const [mounted, setMounted] = useState(false);
   const [mouseDownTime, setMouseDownTime] = useState(0);
   const [clickedThing, setClickedThing] = useState("Loading...");
-  const playerCoord = useRef({ x: 48, y: 48 });
+  const playerCoord = useRef({ x: 230, y: 38 });
   const tileMap = useRef(null);
-  const loading = useRef(false);
+  const loading = useRef(false); 
   const moveRight = useRef(false);
   const moveLeft = useRef(false);
   const moveDown = useRef(false);
   const moveUp = useRef(false);
-  const mapNumber = useRef(1);
+  const mapNumber = useRef(3);
   const map = useRef([]);
   const entityLoop = useRef({});
   const exitLoop = useRef({});
@@ -136,6 +135,7 @@ function Engine() {
   }
 
   function loop() {
+    debugger
     tileMap.current.drawBuffer();
     console.log('you buff?')
     count += 1;
@@ -441,7 +441,7 @@ function Engine() {
       mouseX = parseInt(mouseX) + parseInt(camera.dataset.x);
       mouseY = parseInt(mouseY) + parseInt(camera.dataset.y);
       for (const entity in entityLoop.current) {
-        debugger 
+        // debugger 
         let animal = ''
         if (
           mouseX >= entityLoop.current[entity].cb.left &&
@@ -526,7 +526,7 @@ function play(){
 
     <React.Fragment>
       <div className="floating-">
-    <h3>{clickedThing !== "Nada" ? clickedThing : "Test"}</h3> 
+    <h3><span id="Hey">{clickedThing !== "Nada" ? clickedThing : "Traverse thew world using w 'up' a 'left' s 'down' d 'right' and click on an animal to learn more!"}</span></h3> 
     <audio id='myAudio' src={Main}></audio>
     <button onClick={()=> play()} > Stop the music?</button>
     {clickedThing === " " ? null : <button onClick={()=> clearClick()}>Clear</button>}

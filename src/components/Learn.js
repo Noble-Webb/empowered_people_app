@@ -24,7 +24,7 @@ class Learn extends React.Component {
     }
 
     render(){
-        const { common_name, url, family, extinction_date, range,kingdom, phylum, scientific_class, order, genus, species, description } = this.props.mammal
+        const { common_name, url, family,  extinction_date_BCE, range,kingdom, phylum, scientific_class, order, genus, species, description } = this.props.mammal
         
     return (
         <div>
@@ -42,20 +42,20 @@ class Learn extends React.Component {
 				</div>
 				    <img src={"https://image.shutterstock.com/z/stock-photo-large-group-of-african-safari-animals-composited-together-in-a-scene-of-the-grasslands-of-kenya-727249072.jpg"} alt="green apple slice"/>
 			</div>
-			<div class="photo-album">
+			{/* <div class="photo-album">
 				<ul>
 					<li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302064/codepen/delicious-apples/green-apple2.png" alt="green apple"/></li>
 					<li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537303532/codepen/delicious-apples/half-apple.png" alt="half apple"/></li>
 					<li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537303160/codepen/delicious-apples/green-apple-flipped.png" alt="green apple"/></li>
 					<li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537303708/codepen/delicious-apples/apple-top.png" alt="apple top"/></li>
 				</ul>
-			</div>
+			</div> */}
 		    </div>
 	        </div>
             <div class="product__info">
                 <div class="title">
                     <h1>{common_name}</h1>
-                    <span>{extinction_date}</span>
+                    <span>Approx. extinction date BCE: { extinction_date_BCE}</span>
                 </div>
                 <div class="price">
                     Description: <span> {description}</span>
@@ -102,20 +102,20 @@ class Learn extends React.Component {
 				</div>
 				    <img src="https://image.shutterstock.com/z/stock-photo-large-group-of-african-safari-animals-composited-together-in-a-scene-of-the-grasslands-of-kenya-727249072.jpg"/>
 			</div>
-			<div class="photo-album">
+			{/* <div class="photo-album">
 				<ul>
 					<li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302064/codepen/delicious-apples/green-apple2.png" alt="green apple"/></li>
 					<li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537303532/codepen/delicious-apples/half-apple.png" alt="half apple"/></li>
 					<li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537303160/codepen/delicious-apples/green-apple-flipped.png" alt="green apple"/></li>
 					<li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537303708/codepen/delicious-apples/apple-top.png" alt="apple top"/></li>
 				</ul>
-			</div>
+			</div> */}
 		    </div>
 	        </div>
             <div class="product__info">
                 <div class="title">
                     <h1>{common_name}</h1>
-                    <span>{extinction_date}</span>
+                    <span>Approx.extinction date BCE: { extinction_date_BCE}</span>
                 </div>
                 <div class="price">
                     Description: <span> {description}</span>

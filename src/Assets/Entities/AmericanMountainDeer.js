@@ -26,4 +26,4 @@ class AmericanMountainDeer extends LLandAnimal {
 
 
 
-export default AmericanMountainDeer;
+export default AmericanMountainDeer;  

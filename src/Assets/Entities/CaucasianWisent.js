@@ -1,7 +1,7 @@
 import LLandAnimal from "./LLandAnimal";
 
 
-class AmericanMastodon extends LLandAnimal {
+class CaucasianWisent extends LLandAnimal {
     constructor(props, x,y) {
         super(props,x,y)
         this.bindCameraToEntity = false
@@ -9,7 +9,7 @@ class AmericanMastodon extends LLandAnimal {
         this.spriteX = 0
         this.spriteY = 4
         this.hsp = .5
-        this.name = "American mastodon"
+        this.name = "Caucasian Wisent"
     }
 
     animates(hsp){
@@ -26,4 +26,4 @@ class AmericanMastodon extends LLandAnimal {
 
 
 
-export default AmericanMastodon;
+export default CaucasianWisent;

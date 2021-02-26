@@ -1,7 +1,7 @@
 import LLandAnimal from "./LLandAnimal";
 
 
-class AmericanMastodon extends LLandAnimal {
+class AmericanMountainDeer extends LLandAnimal {
     constructor(props, x,y) {
         super(props,x,y)
         this.bindCameraToEntity = false
@@ -26,4 +26,4 @@ class AmericanMastodon extends LLandAnimal {
 
 
 
-export default AmericanMastodon;
+export default AmericanMountainDeer;

@@ -1,10 +1,10 @@
 import React, { Component, useState, useEffect, useRef} from "react";
-import Entity from "../Assets/Entities/Entity";
-import WaterAnimal from "../Assets/Entities/WaterAnimal";
-import LLandAnimal from "../Assets/Entities/LLandAnimal";
 import Player from "../Assets/Entities/Player";
-import Raptor from "../Assets/Entities/Raptor";
 import DireWolf from "../Assets/Entities/DireWolf";
+import AmericanMountainDeer from "../Assets/Entities/AmericanMountainDeer";
+import AtlasBear from "../Assets/Entities/AtlasBear";
+import CaucasianWisent from "../Assets/Entities/CaucasianWisent";
+import HimalayanQuail from "../Assets/Entities/HimalayanQuail";
 import AtlanticGrayWhale from "../Assets/Entities/AtlanticGrayWhale";
 import HispaniolanEdibleRat from "../Assets/Entities/HispaniolanEdibleRat";
 import AiobrnisIncrediblis from "../Assets/Entities/AiobrnisIncrediblis";
@@ -25,7 +25,9 @@ function Engine() {
   const [mounted, setMounted] = useState(false);
   const [mouseDownTime, setMouseDownTime] = useState(0);
   const [clickedThing, setClickedThing] = useState("Loading...");
+  // const playerCoord = useRef({ x: 45, y: 330 });
   const playerCoord = useRef({ x: 230, y: 38 });
+
   const tileMap = useRef(null);
   const loading = useRef(false); 
   const moveRight = useRef(false);
@@ -55,8 +57,8 @@ function Engine() {
   let camera = null;
   let cameraCtx = null;
   //take (camera width / 4) * 3   4:3 ratio
-  let cameraWidth = 160;// multiple of 4
-  let cameraHeight = 120;// mutiple 3
+  let cameraWidth = 200; // 160 multiple of 4
+  let cameraHeight = 150; //120  mutiple 3
   let entityCount = 0
  
 
@@ -135,7 +137,7 @@ function Engine() {
   }
 
   function loop() {
-    debugger
+    // debugger
     tileMap.current.drawBuffer();
     console.log('you buff?')
     count += 1;
@@ -175,7 +177,7 @@ function Engine() {
       mainCanvas.width,
       mainCanvas.height
     ); 
-    mainCtx.fillStyle = "blue";
+    mainCtx.fillStyle = "green";
     mainCtx.fillRect(
       mainCanvas.dataset.mousex,
       mainCanvas.dataset.mousey,
@@ -197,6 +199,7 @@ function Engine() {
     loading.current = false;
     entityLoop.current = {};
     exitLoop.current = {};
+    // debugger
     switch (kind) {
       case "right":
         moveRight.current = true;
@@ -346,9 +349,37 @@ function Engine() {
                     parseInt(entity[1]),
                     parseInt(entity[2])
                   );
-                 break;
-                  case "HispaniolanEdibleRat":
-                    emptyEntities[index] = new HispaniolanEdibleRat(
+                  break;
+                case "HispaniolanEdibleRat":
+                  emptyEntities[index] = new HispaniolanEdibleRat(
+                    setProps(),
+                    parseInt(entity[1]),
+                    parseInt(entity[2])
+                  );
+                  break;
+                  case "AmericanMountainDeer":
+                    emptyEntities[index] = new AmericanMountainDeer(
+                      setProps(),
+                      parseInt(entity[1]),
+                      parseInt(entity[2])
+                    );
+                    break; 
+                    case "HimalayanQuial":
+                    emptyEntities[index] = new HimalayanQuail(
+                      setProps(),
+                      parseInt(entity[1]),
+                      parseInt(entity[2])
+                    );
+                    break; 
+                    case "AtlasBear":
+                    emptyEntities[index] = new AtlasBear(
+                      setProps(),
+                      parseInt(entity[1]),
+                      parseInt(entity[2])
+                    );
+                    break; 
+                    case "CaucasianWisent":
+                    emptyEntities[index] = new CaucasianWisent(
                       setProps(),
                       parseInt(entity[1]),
                       parseInt(entity[2])
@@ -377,12 +408,12 @@ function Engine() {
             playerCoord.current = {x: currentX, y: currentY} // check players exit movement 
             if (moveRight.current){
               // debugger
-              entityLoop.current[0].x = 8 // exits width smaller than 8 to stop looping exits   
+              entityLoop.current[0].x = 16 // 8 exits width smaller than 8 to stop looping exits   
               entityLoop.current[0].y = currentY
               moveRight.current = false
             }
             if (moveLeft.current){
-              entityLoop.current[0].x = tileMap.current.width - 24 // lines up the to be 8 away after movement 
+              entityLoop.current[0].x = 16 // tileMap.current.width - 24 lines up the to be 8 away after movement 
               entityLoop.current[0].y = currentY
               moveLeft.current = false
             }
@@ -440,6 +471,7 @@ function Engine() {
       mouseY = mouseY * diffH;
       mouseX = parseInt(mouseX) + parseInt(camera.dataset.x);
       mouseY = parseInt(mouseY) + parseInt(camera.dataset.y);
+      debugger 
       for (const entity in entityLoop.current) {
         // debugger 
         let animal = ''

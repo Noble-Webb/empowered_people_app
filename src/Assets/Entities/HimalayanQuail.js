@@ -1,13 +1,13 @@
 import Raptor from "./Raptor";
   
-class GuadalupeCaracara extends Raptor {
+class HimalayanQuail extends Raptor {
     constructor(props, x,y) {
         super(props,x,y)
         this.bindCameraToEntity = false
         this.movesWithKeysCheck = false
         this.spriteX = 0
         this.spriteY = 2
-        this.name = "Guadalupe Caracara"
+        this.name = "Himalayan Quail"
     }
 
     animates(){
@@ -23,4 +23,4 @@ class GuadalupeCaracara extends Raptor {
 
 
 
-export default GuadalupeCaracara;
+export default HimalayanQuail;

@@ -6,7 +6,7 @@ class AtlasBear extends LLandAnimal {
         super(props,x,y)
         this.bindCameraToEntity = false
         this.movesWithKeysCheck = false
-        this.spriteX = 0
+        this.spriteX = 4
         this.spriteY = 4
         this.hsp = .5
         this.name = "Atlas Bear"
@@ -17,7 +17,7 @@ class AtlasBear extends LLandAnimal {
         if (this.animateClock % 30 === 0) {
             this.animateFrame = !this.animateFrame
         }
-        hsp > 0 ? this.spriteX = 0 : this.spriteX = 2
+        hsp > 0 ? this.spriteX = 4 : this.spriteX = 6
         this.animateFrame ? this.spriteY = 4 : this.spriteY = 5
     }
    

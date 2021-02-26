@@ -34,7 +34,7 @@ function Engine() {
   const moveLeft = useRef(false);
   const moveDown = useRef(false);
   const moveUp = useRef(false);
-  const mapNumber = useRef(3);
+  const mapNumber = useRef(10);
   const map = useRef([]);
   const entityLoop = useRef({});
   const exitLoop = useRef({});

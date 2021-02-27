@@ -259,12 +259,12 @@ function Engine() {
 
     if (map.current.length === 0 && loading.current === false) { //no map nor loading 
       loading.current = true; 
-      console.log("you here?")
+      // console.log("you here?")
       fetch(Urlis + "/map/show/" + `${mapNumber.current}`) 
         .then((resp) => resp.json())
         .then((newMap) => {
           //If you want to create a default map, this is the place
-          console.log("you break?")
+          // console.log("you break?")
           let brandNew = newMap.tiles.split("[").filter((string) => {
             return string !== "";
           });
@@ -364,7 +364,7 @@ function Engine() {
                       parseInt(entity[2])
                     );
                     break; 
-                    case "HimalayanQuial":
+                    case "HimalayanQuail":
                     emptyEntities[index] = new HimalayanQuail(
                       setProps(),
                       parseInt(entity[1]),

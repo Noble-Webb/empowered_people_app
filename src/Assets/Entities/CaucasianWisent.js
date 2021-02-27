@@ -6,9 +6,9 @@ class CaucasianWisent extends LLandAnimal {
         super(props,x,y)
         this.bindCameraToEntity = false
         this.movesWithKeysCheck = false
-        this.spriteX = 0
-        this.spriteY = 4
-        this.hsp = .5
+        this.spriteX = 4
+        this.spriteY = 6
+        this.hsp = .5  
         this.name = "Caucasian Wisent"
     }
 
@@ -17,8 +17,8 @@ class CaucasianWisent extends LLandAnimal {
         if (this.animateClock % 30 === 0) {
             this.animateFrame = !this.animateFrame
         }
-        hsp > 0 ? this.spriteX = 0 : this.spriteX = 2
-        this.animateFrame ? this.spriteY = 4 : this.spriteY = 5
+        hsp > 0 ? this.spriteX = 4 : this.spriteX = 6
+        this.animateFrame ? this.spriteY = 6 : this.spriteY = 7
     }
    
 }

@@ -7,14 +7,14 @@
   margin: 0 auto;
 }
 .floating-overlay {  
-  position: absolute;  
+  position: relative;  
   width: 30vw;  height: 25vh;  left: 33vw;  top: 25vh;}
 
 
 /* ----- Global ----- */
 /* * {
 	box-sizing: border-box;
-} */
+} 
 
 
 body {

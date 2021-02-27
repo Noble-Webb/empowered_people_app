@@ -20,19 +20,19 @@ class Raptor extends Entity {
         }
         this.animates()
     }
-    // draw(){
-    //     this.ctx.drawImage(
-    //         this.spriteSheet,
-    //         this.spriteX * 16,
-    //         this.spriteY * 16,
-    //         16,
-    //         16,
-    //         this.x,
-    //         this.y,
-    //         16,
-    //         16   
-    //       );
-    // }
+    draw(){
+        this.ctx.drawImage(
+            this.spriteSheet,
+            this.spriteX * 16,
+            this.spriteY * 16,
+            16,
+            16,
+            this.x,
+            this.y,
+            16,
+            16   
+          );
+    }
 }
 
 

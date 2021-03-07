@@ -25,7 +25,7 @@ import { connect } from "react-redux";
         body:  JSON.stringify(editedProfile)
       }
   
-      fetch(`http://localhost:3002/users/${target}`, reqObj)
+      fetch(`http://localhost:3003/users/${target}`, reqObj)
       .then(resp => resp.json())
       .then(updatedUser => {
         console.log(updatedUser)

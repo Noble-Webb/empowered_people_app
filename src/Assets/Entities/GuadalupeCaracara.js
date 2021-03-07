@@ -8,6 +8,7 @@ class GuadalupeCaracara extends Raptor {
         this.spriteX = 0
         this.spriteY = 2
         this.name = "Guadalupe Caracara"
+        this.id = 1145
     }
 
     animates(){

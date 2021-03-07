@@ -80,7 +80,7 @@ function Engine() {
       canvas: camera,
       ctx: cameraCtx,
       map: map.current,
-      entityLoop: entityLoop
+      entityLoop: entityLoop,
     };
   }
 
@@ -139,7 +139,7 @@ function Engine() {
   function loop() {
     // debugger
     tileMap.current.drawBuffer();
-    console.log('you buff?')
+   
     count += 1;
 
     for (const entity in entityLoop.current) {
@@ -189,8 +189,8 @@ function Engine() {
   }
 
   function moveMaps(goTo, kind) { // move through maps
-    clearInterval(loopInterval.current);
-    setClickedThing("loading...");
+    clearInterval(loopInterval.current); 
+    setClickedThing("loading..");
     playerCoord.current = {x: entityLoop.current[0].x, y: entityLoop.current[0].y}
     mapNumber.current = goTo;
     tileMap.current = null;
@@ -214,6 +214,7 @@ function Engine() {
         moveDown.current = true;
         break;
     }
+    
   }
 
   function handleMouseMove(e) {
@@ -259,7 +260,6 @@ function Engine() {
 
     if (map.current.length === 0 && loading.current === false) { //no map nor loading 
       loading.current = true; 
-      // console.log("you here?")
       fetch(Urlis + "/map/show/" + `${mapNumber.current}`) 
         .then((resp) => resp.json())
         .then((newMap) => {
@@ -284,7 +284,10 @@ function Engine() {
               });
             count += 1;
           }
+      
+
           map.current = newMapReturn; 
+        
           tileMap.current = new TileDraw(map.current); // creating game map from created map 
           function asyncEntities(entities) { // parse entites 
             console.log(map.current)
@@ -471,7 +474,7 @@ function Engine() {
       mouseY = mouseY * diffH;
       mouseX = parseInt(mouseX) + parseInt(camera.dataset.x);
       mouseY = parseInt(mouseY) + parseInt(camera.dataset.y);
-      debugger 
+      // debugger 
       for (const entity in entityLoop.current) {
         // debugger 
         let animal = ''
@@ -481,19 +484,11 @@ function Engine() {
           mouseY >= entityLoop.current[entity].cb.top &&
           mouseY <= entityLoop.current[entity].cb.bottom
         ) {
-          fetch('http://localhost:3002/mammals')
+          fetch(Urlis + "/mammals/" + `${entityLoop.current[entity].id}`)
           .then(resp => resp.json())
-          .then(mammals =>{
-           return  mammals.find(
-              mammal =>{
-                // debugger 
-              if(mammal.common_name.toLowerCase() === entityLoop.current[entity].name.toLowerCase()){
-                animal = mammal.description
-              }
-              console.log(animal)
-              setClickedThing(animal);
-              }
-            )
+          .then(mammal =>{
+            // debugger
+           setClickedThing(mammal.description)
           })
         }
       }
@@ -547,18 +542,33 @@ function Engine() {
   }
 function clearClick(){
   // console.log("hey")
-  setClickedThing("Traverse thew world using w 'up' a 'left' s 'down' d 'right' and click on an animal to learn more! Use the oter tab to go back to the website.") 
+  setClickedThing("Traverse the world using w 'up' a 'left' s 'down' d 'right' and click on an animal to learn more! Use the oter tab to go back to the website.") 
 }
 function play(){
   console.log("hey")
   audio.current.pause()
   
 }
+
+function mapName(mapNumber){
+  // debugger
+  let name;
+  if(mapNumber === 10){
+    name = "Rocky Mountains"
+  }
+  if(mapNumber === "4"){
+    name = "Great Plains"
+  }if(mapNumber === "3"){
+    name = "Boreal Forest"
+  }
+  return name
+}
+
   return (
 
     <React.Fragment>
       <div className="floating-">
-    <h3><span id="Hey">{clickedThing !== "Nada" ? clickedThing : "Traverse thew world using w 'up' a 'left' s 'down' d 'right' and click on an animal to learn more!"}</span></h3> 
+    <h3><span id="Hey">{clickedThing !== "Nada" ? clickedThing : `Traverse the ${mapName(mapNumber.current)} using w 'up' a 'left' s 'down' d 'right' and click on an animal to learn more! Click the other tab to return to the application.`}</span></h3> 
     <audio id='myAudio' src={Main}></audio>
     <button onClick={()=> play()} > Stop the music?</button>
     {clickedThing === " " ? null : <button onClick={()=> clearClick()}>Clear</button>}

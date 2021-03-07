@@ -13,6 +13,7 @@ class NewfoundlandWolf extends LLandAnimal {
         this.spriteY = 4
         this.hsp = .5
         this.name = "Newfoundland wolf"
+        this.id = 1102
     }
 
     animates(hsp){ 

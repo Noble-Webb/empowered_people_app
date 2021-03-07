@@ -13,7 +13,7 @@ class TileDraw {
   }
 
   draw() {
-    debugger
+    
     this.canvas = document.getElementById("buffer-canvas");
     this.tiles = document.getElementById("tile-set");
     let mainCanvas = document.getElementById("camera-canvas")

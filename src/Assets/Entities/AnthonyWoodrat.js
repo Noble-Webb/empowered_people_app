@@ -12,7 +12,7 @@ class AnthonyWoodrat extends SLandAnimal {
         this.spriteY = 0
         this.hsp = .5
         this.name = "Anthony's woodrat"
-
+        this.id = 1077
     }
 
     loop(){

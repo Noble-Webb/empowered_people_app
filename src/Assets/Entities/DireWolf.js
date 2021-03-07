@@ -12,6 +12,7 @@ class DireWolf extends LLandAnimal {
         this.spriteY = 4
         this.hsp = .5
         this.name = "Dire Wolf"
+        this.id = 1059
     }
 
     animates(hsp){

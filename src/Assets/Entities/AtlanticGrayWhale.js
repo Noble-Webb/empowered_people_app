@@ -12,7 +12,7 @@ class AtlanticGrayWhale extends WaterAnimal {
         this.spriteY = 6
         this.hsp = .5
         this.name = 'Atlantic gray whale'
-        
+        this.id = 1078
     }
 
     animates(hsp){

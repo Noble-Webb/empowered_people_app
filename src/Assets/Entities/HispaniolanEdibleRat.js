@@ -12,6 +12,7 @@ class HispaniolanEdibleRat extends SLandAnimal {
         this.spriteY = 0
         this.hsp = .5
         this.name = 'Hispaniolan edible rat'
+        this.id = 1090
 
     }
 

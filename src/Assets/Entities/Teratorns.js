@@ -11,6 +11,7 @@ class Teratorns extends Raptor {
         this.spriteX = 0
         this.spriteY = 2
         this.name = "Teratorns"
+        this.id = 1128
     }
 
     animates(){

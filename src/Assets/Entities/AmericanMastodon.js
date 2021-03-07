@@ -10,6 +10,7 @@ class AmericanMastodon extends LLandAnimal {
         this.spriteY = 8
         this.hsp = .5
         this.name = "American mastodon"
+        this.id = 1049
     }
 
     animates(hsp){

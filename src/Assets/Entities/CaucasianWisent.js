@@ -10,6 +10,7 @@ class CaucasianWisent extends LLandAnimal {
         this.spriteY = 6
         this.hsp = .5  
         this.name = "Caucasian Wisent"
+        this.id = 1239
     }
 
     animates(hsp){

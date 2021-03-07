@@ -10,6 +10,7 @@ class AmericanMountainDeer extends LLandAnimal {
         this.spriteY = 2
         this.hsp = .5
         this.name = "American Mountain Deer"
+        this.id = 1050
     }
 
     animates(hsp){

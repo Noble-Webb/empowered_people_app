@@ -7,7 +7,7 @@ import { removePost, upvotePost} from '../actions/posts';
 
 class PostList extends Component {
   componentDidMount(){
-    fetch('http://localhost:3002/posts')
+    fetch('http://localhost:3003/posts')
     .then(resp => resp.json())
     .then(posts =>{
       console.log(posts)

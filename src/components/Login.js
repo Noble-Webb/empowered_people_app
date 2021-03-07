@@ -27,7 +27,7 @@ class Login extends React.Component {
       body: JSON.stringify(this.state)
     }
 
-    fetch('http://localhost:3002/auth', reqObj)
+    fetch('http://localhost:3003/auth', reqObj)
     .then(resp => resp.json())
     .then(data => {
       if (data.error) {

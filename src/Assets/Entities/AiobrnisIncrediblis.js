@@ -11,6 +11,7 @@ class AiobrnisIncrediblis extends Raptor {
         this.spriteX = 0
         this.spriteY = 2
         this.name = "Aiolornis incredibilis"
+        this.id = 1120
     }
 
     animates(){

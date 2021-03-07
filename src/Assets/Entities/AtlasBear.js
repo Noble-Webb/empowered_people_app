@@ -10,6 +10,7 @@ class AtlasBear extends LLandAnimal {
         this.spriteY = 4
         this.hsp = .5
         this.name = "Atlas Bear"
+        this.id = 1326
     }  
 
     animates(hsp){

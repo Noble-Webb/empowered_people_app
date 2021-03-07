@@ -8,7 +8,8 @@ class HimalayanQuail extends SLandAnimal {
         this.spriteX = 0
         this.spriteY = 8
         this.hsp = .5
-        this.name = "Anthony's woodrat"
+        this.name = "Himalayan Quail"
+        this.id = 1278
 
     }
 

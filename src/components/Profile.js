@@ -51,7 +51,7 @@ class Profile extends React.Component{
       body:  JSON.stringify(editedPost)
     }
 
-    fetch(`http://localhost:3002/posts/${target}`, reqObj)
+    fetch(`http://localhost:3003/posts/${target}`, reqObj)
     .then(resp => resp.json())
     .then(updatedPost => {
       this.setState({
@@ -71,7 +71,7 @@ class Profile extends React.Component{
   handlePostDelete = () => {
       const target = this.props.post.id 
   
-      fetch(`http://localhost:3002/posts/${target}`, {method: 'DELETE'})
+      fetch(`http://localhost:3003/posts/${target}`, {method: 'DELETE'})
       .then(resp => resp.json())
       .then(data => { 
         console.log(data.post.id)

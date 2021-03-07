@@ -5,14 +5,15 @@ class TileDraw {
   
   constructor(map) {
     this.map = map
-    this.width = this.map.length * 30;
-    this.height = this.map.length * 30;
+    this.width = this.map.length * 16;
+    this.height = this.map.length * 16;
     this.canvas = document.getElementById("buffer-canvas");
     this.tiles = document.getElementById("tile-set");
     this.camera = document.getElementById("camera-canvas")
   }
 
   draw() {
+    debugger
     this.canvas = document.getElementById("buffer-canvas");
     this.tiles = document.getElementById("tile-set");
     let mainCanvas = document.getElementById("camera-canvas")

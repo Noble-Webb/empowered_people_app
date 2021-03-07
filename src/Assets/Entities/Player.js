@@ -51,6 +51,14 @@ class Player extends Entity {
     this.canvas.dataset.x = cameraX;
     this.canvas.dataset.y = cameraY;
   }
+  setHb(){
+    this.hb = {
+      left: this.x + 3,
+      right: this.x + 12,
+      top: this.y + 10,
+      bottom: this.y + 15, 
+    }
+  }
 
   collidingWithMap(x, y) {
     let tileX = Math.floor(x / 16);
@@ -62,6 +70,13 @@ class Player extends Entity {
     return truth;
   }
   movesWithKeys() {
+    // This pushes the player to the right 
+    while (this.collidingWithMap(this.hb.right, this.hb.top) ||
+      this.collidingWithMap(this.hb.left, this.hb.bottom) ||this.collidingWithMap(this.hb.left, this.hb.top) ||
+      this.collidingWithMap(this.hb.right, this.hb.bottom)) {
+        this.x += 1
+        this.setHb();
+    }
     let hsp = this.keys.right - this.keys.left;
     let vsp = this.keys.down - this.keys.up;
     let sideToCheck = null;

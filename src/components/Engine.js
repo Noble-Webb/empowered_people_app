@@ -254,7 +254,7 @@ function Engine() {
       mainCanvas = document.getElementById("window-canvas");
       mainCtx = mainCanvas.getContext("2d");
       tileMap.current.draw();
-      // debugger 
+      // debugger  
     }
 
     if (map.current.length === 0 && loading.current === false) { //no map nor loading 
@@ -413,7 +413,7 @@ function Engine() {
               moveRight.current = false
             }
             if (moveLeft.current){
-              entityLoop.current[0].x = 16 // tileMap.current.width - 24 lines up the to be 8 away after movement 
+              entityLoop.current[0].x = tileMap.current.width - 32 // tileMap.current.width - 24 lines up the to be 8 away after movement 
               entityLoop.current[0].y = currentY
               moveLeft.current = false
             }
@@ -547,7 +547,7 @@ function Engine() {
   }
 function clearClick(){
   // console.log("hey")
-  setClickedThing(" ") 
+  setClickedThing("Traverse thew world using w 'up' a 'left' s 'down' d 'right' and click on an animal to learn more! Use the oter tab to go back to the website.") 
 }
 function play(){
   console.log("hey")

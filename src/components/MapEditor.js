@@ -7,10 +7,10 @@ import { connect } from "react-redux";
 
     const handleSubmit= (e) => {
       // e.preventDefault();
-      const target = props.users.id  
+      const target = localStorage.getItem('user_id')  
       
       const editedProfile = {
-        username: props.users.username,
+        username: localStorage.getItem('username'),
         profile_pic: props.users.profile_pic,
         family: props.users.family,
         map_suggestion: e.target.value

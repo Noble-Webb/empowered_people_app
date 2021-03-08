@@ -15,7 +15,7 @@ class Profile extends React.Component{
         title: '',
         content: '',
         display: false,
-        username: this.props.users.username,
+        author: localStorage.getItem("username"),
         error: null
       }
   }
@@ -36,11 +36,11 @@ class Profile extends React.Component{
     const target = e.target.id  
     
     const editedPost = {
-      author: this.props.users.username,
+      author: localStorage.getItem("username"),
       title: this.state.title,
       content: this.state.content,
       upvote: this.state.upvote,
-      user_id: this.props.users.id 
+      user_id: localStorage.getItem("user_id") 
     }
 
     const reqObj = {
@@ -93,7 +93,6 @@ class Profile extends React.Component{
         { this.state.display
         ?
         <form className={'new-post-form'} inverted onSubmit={()=>this.handlePostSubmit}>
-      <h1>Learn something new today? </h1>
     <form widths='equal'>
       <Form.Input
         name='title'

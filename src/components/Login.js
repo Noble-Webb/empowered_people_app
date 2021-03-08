@@ -38,7 +38,10 @@ class Login extends React.Component {
         this.props.currentUser(data)
         localStorage.setItem('my_app_token', data.token)
         this.props.history.push('/users/profile')
-        window.location.reload();
+        localStorage.setItem('username', data.user.username)
+        localStorage.setItem('user_id', data.user.id)
+      debugger 
+        
       }
     })
   }

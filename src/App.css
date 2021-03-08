@@ -25,6 +25,10 @@ body {
   background-image: url('bgimages/10.jpg');
   
 }
+#submission{
+  height: 390px;
+
+}
 
 h3 {
 	font-size: 3em;

@@ -13,7 +13,7 @@ class User extends React.Component {
       show: false ,
       users: [],
       posts: [],
-      username: '',
+      username: localStorage.getItem("username"),
       password: '',
       profile_pic: '',
       family: '',
@@ -65,7 +65,7 @@ class User extends React.Component {
   }
 
   handleDelete = () => {
-    const target = this.props.users.id 
+    const target = localStorage.getItem("user_id")
     fetch(`http://localhost:3003/users/${target}`, {method: 'DELETE'})
     .then(resp => resp.json())
     .then(data => {
@@ -82,7 +82,7 @@ class User extends React.Component {
   
   handleSubmit = (e) => {
     e.preventDefault();
-    const target = this.props.users.id  
+    const target = localStorage.getItem("user_id") 
     
     const editedProfile = {
       username: this.state.username,
@@ -144,23 +144,23 @@ class User extends React.Component {
   
   render(){
     const { removePost, editPost} = this.props
-    let userPosts = this.state.posts.filter(post => post.user_id === this.props.users.id)
-  console.log(this.state.show)
-  // console.log(this.props.users.username)
+    let userPosts = this.state.posts.filter(post => post.user_id == localStorage.getItem("user_id"))
+  console.log(localStorage.getItem("user_id"))
+  console.log(this.state.posts)
     return (
       <div>
           {userPosts.length === 0 ? <h1 style={{color: 'red'}}>You Have Not Made A Post!!</h1> : null}
           {this.state.error ? <h4 style={{color: 'red'}}>{this.state.error}</h4> : null}
           {localStorage.getItem("my_app_token") ?
         <div className="row justify-content-center">
-           <div> <h1><span id="Hey">Welcome to your Profile Page {this.props.users.username}</span></h1> </div>
+           <div> <h1><span id="Hey">Welcome to your Profile Page {localStorage.getItem("username")}</span></h1> </div>
         {this.state.show ? 
               <form onSubmit={this.handleSubmit}>
                 <input
                     onChange={this.handleChange}
                     type="text"
                     name="username"
-                    placeholder={this.props.users.username}
+                    placeholder={localStorage.getItem("username")}
                     required
                 />
                 <br/>
@@ -182,14 +182,14 @@ class User extends React.Component {
 
           <button 
           type="button" 
-          id={this.props.users.id}
+          id={localStorage.getItem("user_id")}
           name='edit'
           onClick={this.handleProfile} 
           className="btn btn-primary">
           Edit Profile
         </button>  
         <button 
-        id={this.props.users.id}
+        id={localStorage.getItem("user_id")}
         type="button" 
         onClick={this.handleDelete} 
         className="btn btn-danger">

@@ -32,12 +32,6 @@ import tenth from './bgimages/9.jpg'
 class App extends Component {
   componentDidMount(){
     const token = localStorage.getItem('my_app_token')
-    
-    fetch('http://localhost:3002/mammals')
-      .then(resp => resp.json())
-      .then(mammals =>{
-        // console.log(mammals) 
-        this.props.fetchTheDeadWorks(mammals)})
 
     if(!token) {
       this.props.history.push('/signup')
@@ -53,12 +47,16 @@ class App extends Component {
       fetch('http://localhost:3002/current_user', reqObj)
       .then(resp => resp.json())
       .then(users =>{
-        // console.log(users)
+        console.log(users)
+        debugger
+
         this.props.currentUser(users)
       })
     }
     
   }
+
+
   render(){
     //randomized background image with reload. Will A
     let array = [first, second, third, fourth, fifth, sixth, eighth, nineth, tenth]

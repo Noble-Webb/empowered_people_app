@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { addPost } from '../actions/posts';
 import { currentUser } from "../actions/auth";
 import { Form } from 'semantic-ui-react'
+import AutosizeInput from 'react-input-autosize';
 
 class PostForm extends React.Component {
   constructor(props){
@@ -23,12 +24,13 @@ class PostForm extends React.Component {
     e.preventDefault();
 
     const newPost = {
-      author: this.props.users.username,
+      author: localStorage.getItem("username"),
       title: this.state.title,
       content: this.state.content,
       upvote: 0,
-      user_id: this.props.users.id 
+      user_id: localStorage.getItem("user_id") 
     }
+    debugger
 
     const reqObj = {
       method: 'POST',
@@ -71,12 +73,12 @@ class PostForm extends React.Component {
         />
       </form>
       <br/>
-      <form widths='equal'>
-        <Form.Input
+      <form >
+        <textarea
           name='content'
           onChange={this.handleChange}
           value={content}
-          id='form-subcomponent-shorthand-input-first-name'
+          id=''
           placeholder='Content'
         />
       </form>

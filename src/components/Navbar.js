@@ -46,6 +46,9 @@ class Navbar extends React.Component {
           <NavLink className="item" to='/posts/new'>
             Add Post 
           </NavLink>
+          <NavLink className="item" to='/experience'>
+            Contact Me 
+          </NavLink>
           <NavLink className="item" to='/posts'>
             Posts Page
           </NavLink>

@@ -22,10 +22,8 @@ There are three major factors that lead me to create this application:
   * +200 animals along with plants!!
   * User installation of maps
 
-## Known Bugs (2/9/21)
-  * Lower and right most quardrents of interactive aspect span beyond available tiles
+## Known Bugs (3/9/21)
   * Small glitches when retrieving an animal's description if another animal holds the same tile
-  * Engine requires manual alterations when varying map size
   
 ## Application Creation      
   This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

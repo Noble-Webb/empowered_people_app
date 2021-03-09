@@ -571,8 +571,8 @@ function mapName(mapNumber){
   return (
 
     <React.Fragment>
-      <div className="floating-">
-    <h3><span id="Hey">{clickedThing !== "Nada" ? clickedThing : `Traverse the ${mapName(mapNumber.current)} using w 'up' a 'left' s 'down' d 'right' and click on an animal to learn more! Click the other tab to return to the application.`}</span></h3> 
+      <div className="floating-" >
+    <h3 id= "Hey">{clickedThing !== "Nada" ? clickedThing : `Traverse the ${mapName(mapNumber.current)} using w 'up' a 'left' s 'down' d 'right' and click on an animal to learn more! Click the other tab to return to the application.`}</h3> 
     <audio id='myAudio' src={Main}></audio>
     <button onClick={()=> play()} > Stop the music?</button>
     {clickedThing === " " ? null : <button onClick={()=> clearClick()}>Clear</button>}

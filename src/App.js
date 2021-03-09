@@ -56,7 +56,7 @@ class App extends Component {
     
   }
 
-
+   
   render(){
     //randomized background image with reload. Will A
     let array = [first, second, third, fourth, fifth, sixth, eighth, nineth, tenth]

@@ -13,7 +13,7 @@ import PostForm from './components/PostForm';
 import Editor from './components/Editor';
 
 import Game from './container/Game';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import ExtinctAnimals from './components/ExtinctAnimals';
 import Engine from "./components/Engine"
 import './App.css';
@@ -27,7 +27,7 @@ import eighth from './bgimages/7.jpg'
 import nineth from './bgimages/8.jpg'
 import tenth from './bgimages/9.jpg'
 
-// window.location.reload();
+
 
 class App extends Component {
   componentDidMount(){
@@ -44,11 +44,11 @@ class App extends Component {
         }
       }
 
-      fetch('http://localhost:3002/current_user', reqObj)
+      fetch('http://localhost:3003/current_user', reqObj)
       .then(resp => resp.json())
       .then(users =>{
-        console.log(users)
-        debugger
+        // console.log(users)
+        // debugger
 
         this.props.currentUser(users)
       })
@@ -68,8 +68,8 @@ class App extends Component {
         height: '100%'}}>
         <Navbar icon="puzzle" title="Empowered People" description="Explore Your Imagination"/>
         <Switch>
-          {/* <Route exact path="/games" component={Game}/> */}
-          <Route exact path="/games" component={Editor}/>
+          <Route exact path="/games" component={Game}/>
+          {/* <Route exact path="/games" component={Editor}/> */}
           <Route path="/games/play" component={Engine}/>
           <Route exact path="/empowered_people" component={Home}/>
           <Route  exact path="/posts" component={Post}/>
@@ -95,8 +95,8 @@ const mapStateToProps = (state) =>{
   auth: state.auth
 }}
 
-App.propTypes = {
-  message: PropTypes.string.isRequired,
-};
+// App.propTypes = {
+//   message: PropTypes.string.isRequired,
+// };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));

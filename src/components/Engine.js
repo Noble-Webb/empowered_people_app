@@ -23,7 +23,7 @@ import Exit from "../Assets/Exit";
 
 function Engine() {
   const [mounted, setMounted] = useState(false);
-  const [mouseDownTime, setMouseDownTime] = useState(false);
+  const [mouseDownTime, setMouseDownTime] = useState(0);
   const [clickedThing, setClickedThing] = useState("Loading...");
   // const playerCoord = useRef({ x: 45, y: 330 });
   const playerCoord = useRef({ x: 230, y: 38 });
@@ -290,7 +290,7 @@ function Engine() {
         
           tileMap.current = new TileDraw(map.current); // creating game map from created map 
           function asyncEntities(entities) { // parse entites 
-            console.log(map.current)
+            // console.log(map.current)
             let newEntities = entities.split("\n");
             let emptyEntities = [];
             for (const index in newEntities) {
@@ -453,10 +453,7 @@ function Engine() {
         });
     }
 
-    // return function cleanUp(){
-    //   setMounted(false)
-    //   audio.current.pause()
-    // }
+    
   } );
   
   function handleMouseDown(e) {
@@ -464,11 +461,11 @@ function Engine() {
     console.log(mouseDownTime)
     const mainCanvas = document.getElementById("window-canvas");
     const camera = document.getElementById("camera-canvas"); 
-    if (mouseDownTime === false) { // if(mouseDown === 0 )
+    if (mouseDownTime === 0) { // if(mouseDown === false )
       // let newMouseTime = mouseDownTime + 1;
 
       // let newMouseTime = 1;
-      setMouseDownTime(true); //setMouseDownTime(newMouseTime)
+      setMouseDownTime(1); //setMouseDownTime(newMouseTime) (true)
       // debugger 
       let mouseX = mainCanvas.dataset.mousex;
       let mouseY = mainCanvas.dataset.mousey;
@@ -481,7 +478,7 @@ function Engine() {
       // debugger 
       for (const entity in entityLoop.current) {
         // debugger 
-        console.log(entityLoop.current, "woah")
+        console.log("woah")
         if ( //exact position 
           mouseX >= entityLoop.current[entity].cb.left &&
           mouseX <= entityLoop.current[entity].cb.right &&
@@ -524,10 +521,10 @@ function Engine() {
             hidden={true}
           />
           <canvas
-            data-X={0}
-            data-Y={0}
-            data-cameraWidth={cameraWidth}
-            data-cameraHeight={cameraHeight}
+            data-x={0}
+            data-y={0}
+            data-camerawidth={cameraWidth}
+            data-cameraheight={cameraHeight}
             height={tileMap.current.height}
             width={tileMap.current.width}
             id="camera-canvas"
@@ -542,16 +539,15 @@ function Engine() {
 
 
   function handleMouseUp(e) {
-    setMouseDownTime(false);
+    setMouseDownTime(0);
   }
 function clearClick(){
   // console.log("hey")
   setClickedThing(`Traverse the ${mapName(mapNumber.current)} using w 'up' a 'left' s 'down' d 'right' and click on an animal to learn more! Use the oter tab to go back to the website.`) 
 }
 function play(){
-  console.log("hey")
+  // console.log("hey")
   audio.current.pause()
-  
 }
 
 function mapName(mapNumber){

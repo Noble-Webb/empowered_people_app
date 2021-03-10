@@ -27,7 +27,7 @@ class Login extends React.Component {
       body: JSON.stringify(this.state)
     }
 
-    fetch('http://localhost:3003/auth', reqObj)
+    fetch('https://noble-webb.github.io/auth', reqObj)
     .then(resp => resp.json())
     .then(data => {
       if (data.error) {

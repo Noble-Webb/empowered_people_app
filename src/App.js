@@ -44,7 +44,7 @@ class App extends Component {
         }
       }
 
-      fetch('http://localhost:3003/current_user', reqObj)
+      fetch('https://noble-webb.github.io/current_user', reqObj)
       .then(resp => resp.json())
       .then(users =>{
         // console.log(users)

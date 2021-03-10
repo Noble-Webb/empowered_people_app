@@ -15,7 +15,7 @@ class ContactForm extends React.Component{
       handleSubmit(e) {
         e.preventDefault()
         
-        console.log("hey")
+        // console.log("hey")
         const { name, email, subject, message } = this.state
         
         let templateParams = {

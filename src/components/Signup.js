@@ -57,7 +57,7 @@ class Signup extends Component {
       body:  JSON.stringify(this.state)
     }
 
-    fetch('http://localhost:3003/users', reqObj)
+    fetch('https://noble-webb.github.io/users', reqObj)
     .then(resp => resp.json())
     .then(data => {
       console.log(data)

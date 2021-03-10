@@ -66,7 +66,7 @@ class User extends React.Component {
 
   handleDelete = () => {
     const target = localStorage.getItem("user_id")
-    fetch(`http://localhost:3003/users/${target}`, {method: 'DELETE'})
+    fetch(`https://noble-webb.github.io/users/${target}`, {method: 'DELETE'})
     .then(resp => resp.json())
     .then(data => {
       if (data.error) {
@@ -98,7 +98,7 @@ class User extends React.Component {
       body:  JSON.stringify(editedProfile)
     }
 
-    fetch(`http://localhost:3003/users/${target}`, reqObj)
+    fetch(`https://noble-webb.github.io/users/${target}`, reqObj)
     .then(resp => resp.json())
     .then(updatedUser => {
       console.log(updatedUser)
@@ -124,7 +124,7 @@ class User extends React.Component {
   }
   
   componentDidMount(){
-    fetch('http://localhost:3003/posts')
+    fetch('https://noble-webb.github.io/posts')
     .then(resp => resp.json())
     .then(posts => {
       this.props.fetchPostsWorks(posts)
@@ -132,7 +132,7 @@ class User extends React.Component {
         posts: posts
       })
     })
-    fetch('http://localhost:3003/users')
+    fetch('https://noble-webb.github.io/users')
     .then(resp => resp.json())
     .then(users => {
       this.props.fetchUsersWorks(users)

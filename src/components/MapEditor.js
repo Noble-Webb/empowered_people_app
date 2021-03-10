@@ -25,10 +25,10 @@ import { connect } from "react-redux";
         body:  JSON.stringify(editedProfile)
       }
   
-      fetch(`http://localhost:3003/users/${target}`, reqObj)
+      fetch(`https://noble-webb.github.io/users/${target}`, reqObj)
       .then(resp => resp.json())
       .then(updatedUser => {
-        console.log(updatedUser)
+        // console.log(updatedUser)
           
           }
       )

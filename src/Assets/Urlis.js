@@ -1,3 +1,3 @@
-const Urlis = "http://localhost:3003"
+const Urlis = "https://noble-webb.github.io/"
 
 export default Urlis

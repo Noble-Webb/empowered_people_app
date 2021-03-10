@@ -485,7 +485,7 @@ function Engine() {
           mouseY >= entityLoop.current[entity].cb.top &&
           mouseY <= entityLoop.current[entity].cb.bottom
         ) {
-          fetch(Urlis + "/mammals/" + `${entityLoop.current[entity].id}`)
+          fetch(Urlis + "/mammals/" + `${entityLoop.current[entity].name}`)
           .then(resp => resp.json())
           .then(mammal =>{
             // debugger

@@ -14,13 +14,13 @@ class Learn extends React.Component {
     }
 
     urlTab = (url) => {
-        console.log(url)
+        // console.log(url)
         window.open(url)
     }
 
     reload = () => {
         window.location.reload()
-        console.log("hey")
+        // console.log("hey")
     }
 
     render(){

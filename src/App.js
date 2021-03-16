@@ -47,10 +47,6 @@ class App extends Component {
       fetch('http://localhost:3003/current_user', reqObj)
       .then(resp => resp.json())
       .then(users =>{
-        debugger 
-        // console.log(users)
-        // debugger
-
         this.props.currentUser(users)
       })
     }

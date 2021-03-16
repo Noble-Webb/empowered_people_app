@@ -37,7 +37,7 @@ class PostCard extends React.Component{
   <div className="card">
     <div className="front">
       <h1>{title}</h1>
-      <p>{author}<span>{family}</span></p>
+      <p>Author: {author}<span>{family}</span></p>
       <p className="price">＼(^-^)／ Likes: {upvote}</p>
     </div>
     <div className="right">

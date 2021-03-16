@@ -1,6 +1,8 @@
 import TileSet from '../container/Assets/Tilesets/TileSet.png'
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import * as emailjs from "emailjs-com"
+
 
 
   function MapEditor(props) {
@@ -28,7 +30,20 @@ import { connect } from "react-redux";
       fetch(`http://localhost:3003/users/${target}`, reqObj)
       .then(resp => resp.json())
       .then(updatedUser => {
-        // console.log(updatedUser)
+        // debugger 
+        let templateParams = {
+          from_name: localStorage.getItem('user_id'),
+          subject: "New Map",
+          message: `You have a new Map to check out. ${updatedUser.map_suggestion}`
+         }
+
+         emailjs.send(
+            'service_yywmouh',
+          'contact_form',
+           templateParams,
+          'user_LrixglvP0gA3gJDy4vBQD'
+         )
+        
           
           }
       )

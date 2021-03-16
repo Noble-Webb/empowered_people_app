@@ -12,7 +12,7 @@ class Home extends React.Component {
         this.setState({display: newBoolean})
     }
     urlTab = () => {
-        let url = "https://empowered-explorers.herokuapp.com/games/play"
+        let url = "http://localhost:3000/games/play"
     
         // console.log(url)
         window.open(url)

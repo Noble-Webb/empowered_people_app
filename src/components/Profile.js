@@ -119,7 +119,7 @@ class Profile extends React.Component{
         :
         null 
     } 
-  <div class="flex flex-wrap -m-3">
+  
 <div class="wrapper">
 <div class="card">
 <div class="front">
@@ -148,7 +148,7 @@ class Profile extends React.Component{
 </div>
 </div>
   </div>
-    </div>
+    
   )}
 }
 

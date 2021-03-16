@@ -16,7 +16,7 @@ class Navbar extends React.Component {
   
 // opens a tab for the interactive aspect of the app.
   urlTab = () => {
-    let url = "https://empowered-explorers.herokuapp.com/games/play"
+    let url = "http://localhost:3000/games/play"
     window.open(url)
   }
   
@@ -25,7 +25,7 @@ class Navbar extends React.Component {
     return (
       <div>
         {/* Disables Navbar for the game section, temporarily fixing null canvas error.*/}
-        { window.location.href !== "https://empowered-explorers.herokuapp.com/games/play" ?
+        { window.location.href !== "http://localhost:3000/games/play" ?
       <div className={`ui inverted green menu`}>
         <NavLink className="ui header" to='/empowered_people'>
           <i className={`${this.props.icon} icon`} />

@@ -126,13 +126,14 @@ h3 {
   color: #a6a6a6;
 }
 
-.priceA {
+.price {
 	margin: 1.5em 0;
 	color: #ff3f40;
 	font-size: 1.2em;
+	background-color: #fff;
 }
 
-.priceA span {
+.price span {
   padding-left: 0.15em;
   font-size: 1em;
   font-weight: 800;

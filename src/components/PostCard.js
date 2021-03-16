@@ -17,7 +17,7 @@ class PostCard extends React.Component{
       body:  JSON.stringify(this.props.post)
     }
 
-    fetch(`https://noble-webb.github.io/posts/${target}`, reqObj)
+    fetch(`http://localhost:3003/posts/${target}`, reqObj)
     .then(resp => resp.json())
     .then(updatedPost => {
       this.props.upvotePost(updatedPost.id)

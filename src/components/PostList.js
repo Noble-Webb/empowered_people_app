@@ -7,7 +7,7 @@ import { removePost, upvotePost} from '../actions/posts';
 
 class PostList extends Component {
   componentDidMount(){
-    fetch('https://noble-webb.github.io/posts')
+    fetch('http://localhost:3003/posts')
     .then(resp => resp.json())
     .then(posts =>{
       console.log(posts)

@@ -36,7 +36,7 @@ urlTab = (url) => {
   }
 
   componentDidMount(){
-      fetch('https://noble-webb.github.io/mammals')
+      fetch('http://localhost:3003/mammals')
       .then(resp => resp.json())
       .then(mammals =>{   
         this.props.fetchTheDeadWorks(mammals)})

@@ -40,7 +40,7 @@ class PostForm extends React.Component {
       body:  JSON.stringify(newPost)
     }
 
-    fetch('https://noble-webb.github.io/posts', reqObj)
+    fetch('http://localhost:3003/posts', reqObj)
     .then(resp => resp.json())
     .then(post => {
       this.setState({

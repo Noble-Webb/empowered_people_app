@@ -103,8 +103,8 @@ urlTab = (url) => {
                <p>You are about to learn about extinct animals from the Animmalia Kingdom. A kingdom of complex multi-celled organisms that do not produce their own food. This kingdom contains all living and extinct animals. Examples include Mammoths, whales, humans, and most importantly rats?!?!</p> <br/>
 
                <p> These animals, as well as most common animals, are of the Chordata or Vertebrates Phylum. Chordata/Vertebrates are animals that develop a notochord, a cartilaginous skeletal rod that supports the body in embryo and can often become a spine. Most animals we are familiar with, including dogs, horses, birds, and humans fall in to this category. </p>
-                       <h1>Reel it in! etc</h1> <br/>
-                   <p>If you would like to learn more about Scientific classifications, click the 'Let's Get Classy' button below'</p> <br/>
+                        <br/>
+                   <h4>If you would like to learn more about Scientific classifications, click the 'Let's Get Classy' button below'</h4> <br/>
                    <button name="science" onClick={()=>this.urlTab('https://a-z-animals.com/reference/animal-classification/')}> Let's Get Classy </button>
        </div>
        }

@@ -56,13 +56,13 @@ class Login extends React.Component {
     return (
       <div className="login">
         {this.state.error ? <h4 style={{color: 'red'}}>{this.state.error}</h4> : null}
-        <h3><span id="Hey">Welcome Back Friend</span></h3>
+        <h3><span id="Hey">Welcome Back Friend. Please Login</span></h3>
         <form onSubmit={this.handleSubmit}>
           <input name={'username'} placeholder='Username' required  onChange={this.handleInputChange} value={this.state.username} />
           <input name={'password'} onChange={this.handleInputChange} placeholder='Password' type="password" required value={this.state.password} />
           <input type='submit' value='login' />
         </form>
-         <button onClick={()=> this.urlTab()}>"Sign-up!?!?!"</button> 
+         <button onClick={()=> this.urlTab()}>Sign-up!?!?!</button> 
       </div>
     );
   }

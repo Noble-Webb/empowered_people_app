@@ -101,6 +101,7 @@ render() {
             Create Account
             </button>
         </form>
+        <h4><span id="Hey">Click the login tab if you already have an account</span></h4>
         </div>
        
 		);

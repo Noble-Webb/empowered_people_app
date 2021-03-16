@@ -43,7 +43,7 @@ import * as emailjs from "emailjs-com"
            templateParams,
           'user_LrixglvP0gA3gJDy4vBQD'
          )
-        
+        window.alert("Thank You. Your suggestion was sent to Admin!")
           
           }
       )
